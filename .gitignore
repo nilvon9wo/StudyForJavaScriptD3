@@ -1,1 +1,12 @@
+<<<<<<< cae5b1d6427228fac554e1472ab6bb7d5c73d972
 /JavaScriptGoodParts/HTML5Application/nbproject/private/
+=======
+.metadata/*
+JavaScriptGoodParts/HTML5Application/nbproject/private/*
+JavaScriptGoodParts/HTML5Application/node_modules/*
+RemoteSystemsTempFiles/*
+JavaScriptGoodParts/.project
+JavaScriptGoodParts/.settings/.jsdtscope
+JavaScriptGoodParts/.settings/org.eclipse.wst.jsdt.ui.superType.container
+JavaScriptGoodParts/.settings/org.eclipse.wst.jsdt.ui.superType.name
+>>>>>>> Reworked everything and added more...
