@@ -1,0 +1,10 @@
+String.method('deentityify', function(){
+	var entity = {
+		quot: '"',
+		lt:   '<',
+		gt:   '>'
+	};
+	
+	return function(){
+	};
+});

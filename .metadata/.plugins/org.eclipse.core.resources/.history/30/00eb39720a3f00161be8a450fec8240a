@@ -1,0 +1,10 @@
+<html>
+	<head>
+		<script src="scripts/etc/math.js"></script>
+	</head>
+	<body>
+		<pre>
+			<script src="scripts/etc/program.js"></script>
+		</pre>
+	</body>
+</html>

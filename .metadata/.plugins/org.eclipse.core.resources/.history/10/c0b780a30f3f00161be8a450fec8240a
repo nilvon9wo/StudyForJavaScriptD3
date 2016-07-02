@@ -1,0 +1,6 @@
+String.method('trim', function(){
+	console.log('this:' + this);
+	var replaced = this.replace(/^\s+|\s+$/g, '');
+	console.log('replaced:>>>' + replaced + '<<<');
+	return replaced;
+});

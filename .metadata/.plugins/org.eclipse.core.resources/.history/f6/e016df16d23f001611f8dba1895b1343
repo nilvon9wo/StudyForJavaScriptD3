@@ -1,0 +1,25 @@
+var walk_the_DOM = function(node, func){
+	func(node);
+	node = node.firstChild;
+	while(node){
+		walk(node, func);
+		node = node.nextSibling;
+	}
+};
+
+var getElementsByAttribute = function(attribute, value){
+	var results = [];
+	
+	walk_the_DOM(document.body, function(node){
+		var actual = node.nodeType === 1 && node.getAttribute(attribute);
+		
+		if (typeof actual === value || typeof value !== 'string')){
+			results.push(node);
+		}  
+	));
+);                                        
+
+var DomHelper = {
+	walk : walk_the_DOM,
+	getElementsByAttribute : getElementsByAttribute 
+};

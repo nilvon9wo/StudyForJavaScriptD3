@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<script src="scripts/helpers/functionHelper.js"></script>
+		<script src="scripts/helpers/numberHelper.js"></script>
+		<script src="scripts/helpers/stringHelper.js"></script>
+		<script src="scripts/etc/hanoi.js"></script>
+		<script src="scripts/etc/math.js"></script>
+		<script src="scripts/objects/Quo.js"></script>
+		<script src="scripts/objects/sampleObject.js"></script>
+	</head>
+	<body>
+		<pre>
+			<script src="scripts/etc/program.js"></script>
+		</pre>
+	</body>
+</html>

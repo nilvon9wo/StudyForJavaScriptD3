@@ -1,0 +1,19 @@
+function prepareTheRequest(){
+	// TODO:
+}
+
+function sendRequestSynchronously(){
+	// TODO:
+}
+
+function sendRequestAsynchronously(){
+	// TODO:
+}
+
+function display(){
+	// TODO:
+}
+
+var request = prepareTheRequest();
+var response = sendRequestSynchronously(request);
+display(response);

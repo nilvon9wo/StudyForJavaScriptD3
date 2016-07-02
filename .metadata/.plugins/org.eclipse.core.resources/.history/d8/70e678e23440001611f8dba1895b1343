@@ -1,0 +1,17 @@
+var sampleObject = {
+		value: 0,
+		getValue: function(){
+			return this.value;
+		},
+		double: function(){
+			var that = this;
+			var helper = function(){
+				that.value = add(that.value, that.value);
+			}
+			
+			helper();
+		},
+		increment: function(_increment){
+			this.value += typeof _increment === 'number' ? _increment : 1;
+		}
+}

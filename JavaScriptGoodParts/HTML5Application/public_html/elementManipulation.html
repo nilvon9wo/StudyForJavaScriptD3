@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<title>Element Manipulation</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="styles/tooltips.css">
+<link rel="stylesheet" type="text/css" href="styles/dropbox.css">
+
+<script src="scripts/helpers/dropHelper.js"></script>
+<script src="scripts/helpers/functionHelper.js"></script>
+
+<p>Drag the p element back and forth between the two rectangles:</p>
+
+<div class="droptarget tooltipped" draggable="true"
+     ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="myBoxDiv" class="tooltipped" draggable="true">
+        This will change!
+    </div>
+</div>
+
+<p id="demo"></p>
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+<div>
+    <p id="chaos" ondrop="drop(event)" ondragover="allowDrop(event)">
+        This will move.
+    </p>
+</div>
+
+<a href="index.html">Back to Index</a>
+
+<script src="scripts/etc/boxDiv.js"></script>

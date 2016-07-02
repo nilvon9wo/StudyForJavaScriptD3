@@ -1,0 +1,7 @@
+var hanoi = function (disc, source, aux, destination){
+	if (disc > 0){
+		hanoi(disc - 1, source, destination, aux);
+		document.writeln('Move disc ' + disc + ' from ' + source + ' to ' + destination);
+		hanoi(disc - 1, aux, source, destination);
+	}
+}

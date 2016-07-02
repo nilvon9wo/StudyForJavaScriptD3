@@ -1,0 +1,6 @@
+Number.method('integer', function(){
+	var which = this < 0 ? 'ceil' : 'floor';
+	return Math[which](this);
+});
+console.log('Number.method', number.method);
+console.log('Number.method.integer', number.method.integer);

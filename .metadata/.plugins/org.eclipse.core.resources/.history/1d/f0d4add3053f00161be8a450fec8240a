@@ -1,0 +1,17 @@
+var stooge = {
+		"first-name": "Jerome",
+		"last-name" : "Howard"
+};
+
+var firstName  = stooge["first-name"];
+var middleName = stooge["middle-name"] || "(none)";
+
+stooge["first-name"] = 'Jerome';
+stooge["middle-name"] = 'Lester';
+stooge.nickname = 'Curly';
+
+var stoogeX = stooge;
+stoogeX.nickname = 'Curly';
+var nick = stooge.nickname;
+
+var another_stooge = Object.create(stooge);

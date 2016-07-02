@@ -1,0 +1,31 @@
+document.writeln('Hello, world!');
+
+sampleObject.increment();
+document.writeln(sampleObject.value);
+
+sampleObject.increment(2);
+document.writeln(sampleObject.value);
+
+sampleObject.double();
+document.writeln('Value: ' + sampleObject.getValue());
+
+var quo = new Quo('confused');
+document.writeln(quo.get_status());
+
+document.writeln(sum3(4,8,15,16,23,42));
+
+(function(){
+	try{
+		add("seven");
+	}
+	catch (e){
+		document.writeln(e.name + ':' + e.message);
+	}
+}());
+
+document.writeln((-10/3).integer());
+document.writeln('"' + "         neat       ".trim() + '"');
+
+hanoi(3, 'Source', 'Aux', 'Destination');
+document.writeln(factorial(4));
+
