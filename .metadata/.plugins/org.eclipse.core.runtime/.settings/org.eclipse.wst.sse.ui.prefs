@@ -1,8 +1,0 @@
-content_assist_number_of_computers=9
-content_assist_parameters_background=128,64,0
-content_assist_proposals_background=128,128,128
-eclipse.preferences.version=1
-hoverModifiers=combinationHover|true|0;problemHover|false|0;documentationHover|false|0;annotationHover|true|Shift;
-matchingBracketsColor=64,128,128
-useAnnotationsPrefPage=true
-useQuickDiffPrefPage=true

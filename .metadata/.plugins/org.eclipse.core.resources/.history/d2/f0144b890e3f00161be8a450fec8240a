@@ -1,5 +1,0 @@
-Number.method('integer', function(){
-	var which = this < 0 ? 'ceil' : 'floor';
-	console.log(Math);
-	return Math[which](this);
-});

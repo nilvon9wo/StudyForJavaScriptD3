@@ -1,9 +1,0 @@
-var Quo = function(status){
-	return {
-		getStatus: function(){
-			return status;
-		}
-	}
-}
-
-
