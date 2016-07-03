@@ -1,4 +1,5 @@
-/* global NaN, Infinity */
+/* global NaN, Infinity, arrayHelper */
+
 
 var empty = [];
 var numbers = [
@@ -74,3 +75,53 @@ document.writeln(myMatrix[3][3]);
 
 myMatrix = Array.identity(4);
 document.writeln(myMatrix[3][3]);
+
+var a = ['a', 'b', 'c'];
+var b = ['x', 'y', 'z'];
+var c = a.concat(b, true);
+
+a.push('d');
+var d = a.join('');
+
+var a2 = ['a', 'b', 'c'];
+var e = a2.pop();
+
+var a3 = ['a', 'b', 'c'];
+var b3 = ['x', 'y', 'z'];
+var c3 = a.push(b, true);
+
+var b4 = a3.reverse();
+
+var a4 = ['a', 'b', 'c'];
+var c4 = a4.shift();
+
+var a5 = ['a', 'b', 'c'];
+var b5 = a5.slice(0,1);
+var c5 = a5.slice(1);
+var d5 = a5.slice(1,2);
+
+var n = [4, 8, 15, 16, 23, 42];
+n.sort();
+n.sort(arrayHelper.compareNumbers);
+
+var m = ['aa', 'bb', 'a', 4, 8, 15, 16, 23, 42];
+m.sort(arrayHelper.compareSimpleValues);
+document.writeln("m:" + m);
+
+var n = ['a4', 442, 'b2', 68, 44, '1a', 415, 166, 123];
+n.sort(arrayHelper.compareSimpleValues);
+document.writeln("n:" + n);
+
+
+var a6 = ['a', 'b', 'c'];
+var r1 = a6.splice(1, 1, 'ache', 'bug');
+document.writeln("r1:" + r1);
+document.writeln("a6:" + a6);
+
+var a7 = ['a', 'b', 'c'];
+var r2 = a6.unshift('?', '@');
+
+var x = function(){
+    return this.value;
+}.bind({value:666});
+alert(x());

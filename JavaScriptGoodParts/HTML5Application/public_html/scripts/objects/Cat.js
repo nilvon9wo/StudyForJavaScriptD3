@@ -55,3 +55,6 @@ var coolCat = function(spec){
 };
 var myCoolCat = ({name:'Bix'});
 var name = myCoolCat.getName();
+
+var s = 'C'.concat('a', 't');
+var a = String.fromCharCode(67, 97, 116);
