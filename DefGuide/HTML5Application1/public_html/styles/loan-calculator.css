@@ -1,0 +1,81 @@
+h1, h2, h3, .inputItem, .outputItem  {
+    vertical-align: top;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+h2 {
+    font-size: 20px;
+    width: 200px;
+}
+
+#inputs, #outputs {
+    display: table;
+}
+
+#outputs, #sponsors {
+    margin-top: 40px;
+}
+
+.inputItem, .outputItem {
+    display: table-row;
+    width: 400px;
+}
+
+.inputItem label, .outputItem label {
+    display: table-cell;
+    width: 180px;
+}
+
+.inputItem label:after {
+    content: ":  ";
+}
+
+.inputItem input {
+    margin-left: 20px;
+}
+
+.outputItem .output:before {
+    content: "$";
+    text-decoration: none;
+}
+
+#outputs h2 {
+    display: table-cell;
+}
+#outputButton {
+    display: table-cell;
+    float:right;
+    margin-left: 80px;
+}
+
+.output { font-weight: bold; }
+
+#monthlyPayment { text-decoration: underline; }
+
+#data, #loanGraph {
+    vertical-align: top;
+    margin-top: 20px;
+    float:left;
+    width:400px;
+}
+
+#sponsors {
+    clear: both;
+}
+
+#graphTitle {
+    float: none;
+    font-size: 16px;
+    width: 400px;
+}
+
+#graph { 
+    border: solid black 1px;
+    float:left;
+    height:250px;
+    vertical-align: top;
+    width:400px;
+}
+
+

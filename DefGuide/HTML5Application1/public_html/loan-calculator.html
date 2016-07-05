@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Loan Calculator</title>
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="styles/loan-calculator.css" />
+</head>
+<body>
+    <div id="loanPage">
+        <h1>Loan Calculator</h1>
+        <div id="data">
+            <h2>Enter Loan Data</h2>
+            <div id="inputs">
+                <div class="inputItem">
+                    <label for="input.loanAmount">Amount of loan ($)</label>
+                    <input id="input.loanAmount" onchange="calculate();">
+                </div>
+                <div class="inputItem">
+                    <label for="input.annualInterest">Annual interest (%)</label>
+                    <input id="input.annualInterest" onchange="calculate();">
+                </div>
+                <div class="inputItem">
+                    <label for="input.repaymentPeriod">Repayment period (years)</label>
+                    <input id="input.repaymentPeriod" onchange="calculate();">
+                </div>
+                <div class="inputItem">
+                    <label for="input.zipcode">Zipcode (to find lenders)</label>
+                    <input id="input.zipcode" onchange="calculate();">
+                </div>
+            </div>
+            
+            <div id="outputs">
+                <h2>Approximate Payment</h2>
+                <button id="outputButton" onchange="calculate();">Calculate</button>
+                
+                <div class="outputItem">
+                    <label for="monthlyPayment">Monthly payment</label>
+                    <span class="output" id="output.monthlyPayment"></span>
+                </div>
+                <div class="outputItem">
+                    <label for="totalPayment">Total payment</label>
+                    <span class="output" id="output.totalPayment"></span>
+                </div>
+                <div class="outputItem">
+                    <label for="totalInterest">Total interest</label>
+                    <span class="output" id="output.totalInterest"></span>
+                </div>
+
+            </div>
+
+            <div id="sponsors">
+                <h2>Sponsors</h2>
+                <label>Apply for your loan with one of these fine lenders</label>
+                <div id="output.lenders"></div>
+            </div>
+        </div>
+        <div id="loanGraph">
+            <h2 id="graphTitle">Loan Balance, Cumulative Equity, and Interest Payments</h2>
+            <canvas id="graph"></canvas>
+        </div>
+    </div>
+    <script src="./scripts/apps/loan-calculator.js" ></script>
+</body>
+</html>
