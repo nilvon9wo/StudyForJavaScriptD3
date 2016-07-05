@@ -1,0 +1,53 @@
+h1, h2, h3, .inputItem, .outputItem  {
+    vertical-align: top;
+    margin: 20px 0 10px 0;
+    padding: 0;
+}
+
+.inputItem, .outputItem {
+    display: table-row;
+    width: 400px;
+}
+
+.inputItem label, .outputItem label {
+    display: table-cell;
+    width: 180px;
+}
+
+.inputItem label:after {
+    content: ":  ";
+}
+.outputItem .output:before {
+    content: "$";
+    text-decoration: none;
+}
+#outputHeader {
+    display: table-cell;
+    float:left;
+    margin-top: 20px;
+    width: 200px;
+}
+#outputButton {
+    display: table-cell;
+    position: relative;
+    left: 170px;
+    top: -20px;
+    float:right;
+}
+.output { font-weight: bold; }
+
+#monthlyPayment { text-decoration: underline; }
+
+#data {
+    vertical-align: top;
+    float:left;
+    width:400px;
+}
+#graph { 
+    border: solid black 1px;
+    vertical-align: top;
+    float:left;
+    width:400px;
+    height:250px;
+}
+
