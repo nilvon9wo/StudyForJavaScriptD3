@@ -19,10 +19,11 @@ function calculate() {
         var principal = parseFloat(inputs.loanAmount);
         var interest = parseFloat(inputs.annualInterest) / 100 / 12;
         var paymentQuantity = parseFloat(inputs.repaymentPeriod) * 12;
-        var totalPayments = calculations.monthlyPayment * calculations.paymentQuantity;
 
         var x = Math.pow(1 + interest, paymentQuantity);
         var monthlyPayment = (principal * x * interest)/(x - 1);
+
+        var totalPayments = monthlyPayment * paymentQuantity;
 
         return {
             monthlyPayment: monthlyPayment,
@@ -35,7 +36,7 @@ function calculate() {
     function display(calculations){
         var outputs = getElements(['monthlyPayment', 'totalPayment', 'totalInterest']);
 
-        if (isFinite(calculations.monthlyPayments)) {
+        if (isFinite(calculations.monthlyPayment)) {
             setInner('monthlyPayment', calculations.monthlyPayment);
             setInner('totalPayments', calculations.totalPayments);
             setInner('totalInterest', calculations.totalPayments - calculations.principal);
@@ -59,7 +60,14 @@ function calculate() {
     }
 
     function save(inputs){
-        // TODO
+        if (window.localStorage){
+            inputs.forEachOwnProperty(store);
+        }
+
+        function store(key){
+            localStorage[key] = inputs[key];
+        }
+
     }
 
     function setLenders(inputs){

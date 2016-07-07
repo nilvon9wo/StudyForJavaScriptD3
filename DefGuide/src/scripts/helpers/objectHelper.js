@@ -17,3 +17,8 @@ Object.method('superior', function(name){
 Object.method('isArray', function(){
    return isArray(this);
 });
+
+Object.method('forEachOwnProperty', function(callback){
+    'use strict';
+    this.forEach()
+});
