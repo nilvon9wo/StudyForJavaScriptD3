@@ -3,13 +3,14 @@
 Function.prototype.method = function (name, func) {
     if (!this.prototype[name]) {
         this.prototype[name] = func;
+        this.prototype[name].notOwnProperty = true;
         return this;
     }
 };
 
-Object.prototype.toArray = function () {
+Object.method('toArray', function () {
     return Array.prototype.slice.call(this);
-};
+});
 
 Function.method('bind', function (that) {
     var method = this;

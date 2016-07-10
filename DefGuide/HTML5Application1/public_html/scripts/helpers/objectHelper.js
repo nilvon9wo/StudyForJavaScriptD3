@@ -15,7 +15,9 @@ Object.method('forEachOwnProperty', function(callback){
     'use strict';
     for (var property in this){
        if (this.hasOwnProperty[property]){
-           callback(property);
+           if (!this[property].notOwnProperty){
+                callback(property);
+           }
        }
     }
 });
