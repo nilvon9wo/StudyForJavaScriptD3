@@ -1,32 +1,31 @@
-function plus1(x) {
-    "use strict";
-    return x + 1;
-}
+var DefGuideMath = {
+    absolute: function (x) {
+        "use strict";
+        return (x >= 0) ? x : -x;
+    },
+    
+    factorial: function (n) {
+        "use strict";
+        if (this.factorial[n]) {
+            return this.factorial[n];
+        }
 
-function square(x) {
-    "use strict";
-    return x * x;
-}
+        var product = 1;
+        for (var i = 2; i <= n; i++) {
+            product *= n;
+            this.factorial[n] = product;
+        }
 
-function absolute(x) {
-    "use strict";
-    return (x >= 0) ? x : -x;
-}
-
-function factorial(n){
-    "use strict";
-    if (factorial[n]){
-        return factorial[n];
+        return product;
+    },
+    
+    plus1: function (x) {
+        "use strict";
+        return x + 1;
+    },
+    
+    square: function (x) {
+        "use strict";
+        return x * x;
     }
-
-    var product = 1;
-    for (var i = 2; i <= n; i++){
-        product *= n;
-        factorial[n] = product;
-    }
-
-    return product;
-}
-
-
-
+};
