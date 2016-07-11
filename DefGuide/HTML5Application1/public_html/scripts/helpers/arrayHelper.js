@@ -45,6 +45,25 @@ arrayHelper = {
 
 // Instance ---------------------------------------
 
+Array.method('areEqualArrays', function(a, b){
+    'use strict';
+    if (a.length != b.length) {
+        return false;
+    }
+
+    try {
+        a.forEach(function(element, index){
+            if (element !== b[index]){
+                throw BreakException;
+            }
+        });
+    }
+    catch (e){
+        return false;
+    }
+    return true;
+});
+
 Array.method('flatten', function makeFlat() {
     function makeFlat(item, newArray) {
         if (item.isArray()) {
