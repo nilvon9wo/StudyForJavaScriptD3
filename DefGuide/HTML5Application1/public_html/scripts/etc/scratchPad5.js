@@ -1,3 +1,5 @@
+/* global randomNumberGenerator */
+
 'use strict';
 var empty = {};
 var point1 = new Point(0, 0);
@@ -69,7 +71,7 @@ for (var property in obj11){
     if (!obj11.hasOwnProperty(property) || (typeof obj11[property] === 'function')){
         continue;
     }
-    console.log(property)
+    console.log(property);
 }
 
 var q = Object.inherit(new Point());
@@ -77,3 +79,25 @@ q.x = 0;
 q.y = 0;
 console.log(q.r);
 console.log(q.theta);
+
+Object.getOwnPropertyDescriptor({x:1}, 'x');
+Object.getOwnPropertyDescriptor(randomNumberGenerator, 'octet');
+Object.getOwnPropertyDescriptor({}, 'x');
+Object.getOwnPropertyDescriptor({}, 'toString');
+
+var obj12 = {};
+Object.defineProperty(obj12, 'x', {
+    value: 1, 
+    writable: true, 
+    enumerable: false, 
+    configurable: true
+});
+obj12.keys();
+Object.defineProperty(obj12, 'x', {writable: false});
+obj12.x = 2;
+Object.defineProperty(obj12, 'x', {value: 2});
+Object.defineProperty(obj12, 'x', {get: function(){ return 0;}});
+
+
+
+

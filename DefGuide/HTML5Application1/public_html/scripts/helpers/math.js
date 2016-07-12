@@ -14,10 +14,20 @@ var DefGuideMath = {
             return 1;
         }
 
-        return n * factorial(n - 1);
+        if (!factorial.memo){
+            factorial.memo = [];
+        }
+
+        if (factorial.memo[n]){
+            return factorial.memo[n];
+        }
+        
+        var nextValue = n * factorial(n - 1);
+        factorial.memo[n] = nextValue;
+        return nextValue;
     },
 
-    hypotenuse (x, y){
+    hypotenuse: function(x, y){
         'use strict';
         return Math.sqrt(x * x + y * y);
     },

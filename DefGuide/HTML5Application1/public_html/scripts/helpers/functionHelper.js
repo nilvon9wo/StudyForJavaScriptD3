@@ -3,7 +3,7 @@
 Function.prototype.method = function (name, func) {
     if (!this.prototype[name]) {
         this.prototype[name] = func;
-        this.prototype[name].notOwnProperty = true;
+        Object.defineProperty(this.prototype, name, {enumerable: false});
         return this;
     }
 };

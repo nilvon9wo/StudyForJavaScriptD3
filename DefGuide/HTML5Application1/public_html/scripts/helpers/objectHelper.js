@@ -8,13 +8,21 @@ if (typeof Object.create !== 'function'){
 	};
 }
 
-Object.extend = Object.extend || function(o, p){
-        'use strict';
-        for (var property in p){
-            o[property] = p[property];
-        }
-        return o;
-    };
+Object.defineProperty(Object.prototype, 'extend', {
+   writable: true,
+   enumerable: false,
+   configurable: true,
+   value: function(o){
+       var names = Object.getOwnPropertyNames(o);
+       names.forEach(function(name){
+           if (!(name in this)){
+               var desc = Object.getOwnPropertyDescriptor(o, name);
+               Object.defineProperty(this. name, desc);
+           }
+       });
+   }
+
+});
 
 Object.inherit = Object.inherit || function(param){
         'use strict';
@@ -110,9 +118,7 @@ Object.method('forEachOwnProperty', function(callback){
     'use strict';
     for (var property in this){
        if (this.hasOwnProperty[property]){
-           if (!this[property].notOwnProperty){
-                callback(property);
-           }
+            callback(property);
        }
     }
 });
