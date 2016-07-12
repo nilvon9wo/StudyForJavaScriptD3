@@ -89,6 +89,19 @@ Array.method('isArray', function () {
     return arrayHelper.isArray(this);
 });
 
+Array.method('print', function () {
+    'use strict';
+    var length = this.length;
+    var i = 0;
+    if (length === 0){
+        console.log("Empty Array");
+    } else {
+        do {
+            console.log(this[i]);
+        } while (++i < length);
+    }
+});
+
 Array.method('push', function () {
     return this.splice.apply(
             this,
@@ -186,7 +199,7 @@ Array.method('unshift', function () {
 
 // Static --------------------------------------------
 
-Array.dim = function (dimension, initial) {
+Array.dim = Array.dim || function (dimension, initial) {
     var array = [];
     for (var i = 0; i < dimension; i++) {
         array[i] = initial;
@@ -194,7 +207,7 @@ Array.dim = function (dimension, initial) {
     return array;
 };
 
-Array.identity = function (n) {
+Array.identity = Array.identity || function (n) {
     var matrix = Array.matrix(n, n, 0);
     for (var i = 0; i < n; i++) {
         matrix[i][i] = 1;
@@ -202,7 +215,7 @@ Array.identity = function (n) {
     return matrix;
 };
 
-Array.matrix = function (m, n, initial) {
+Array.matrix = Array.matrix || function (m, n, initial) {
     var matrix = [];
     for (var i = 0; i < m; i++) {
         var innerArray = [];

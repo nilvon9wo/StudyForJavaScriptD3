@@ -42,7 +42,7 @@ var data = [7, 8, 9];
 var o = { x: 1};
 o.x = 1;
 
-p = null;
+property = null;
 
 
 if (a === b){
