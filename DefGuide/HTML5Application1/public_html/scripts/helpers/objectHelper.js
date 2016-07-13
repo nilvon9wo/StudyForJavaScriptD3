@@ -1,76 +1,107 @@
-if (typeof Object.create !== 'function'){
-	Object.create = function(obj){
+if (typeof Object.create !== 'function') {
+    Object.create = function (obj) {
         'use strict';
-		var Func = function(){};
+        var Func = function () {
+        };
         'use strict';
-		Func.prototype = obj;
-		return new Func();
-	};
+        Func.prototype = obj;
+        return new Func();
+    };
 }
 
 Object.defineProperty(Object.prototype, 'extend', {
-   writable: true,
-   enumerable: false,
-   configurable: true,
-   value: function(o){
-       var names = Object.getOwnPropertyNames(o);
-       names.forEach(function(name){
-           if (!(name in this)){
-               var desc = Object.getOwnPropertyDescriptor(o, name);
-               Object.defineProperty(this. name, desc);
-           }
-       });
-   }
+    writable: true,
+    enumerable: false,
+    configurable: true,
+    value: function (o) {
+        var names = Object.getOwnPropertyNames(o);
+        names.forEach(function (name) {
+            if (!(name in this)) {
+                var desc = Object.getOwnPropertyDescriptor(o, name);
+                Object.defineProperty(this.name, desc);
+            }
+        });
+    }
 
 });
 
-Object.inherit = Object.inherit || function(param){
+Object.classOf = Object.classOf || function (obj) {
         'use strict';
-        if (param === null){
+        if (obj === null) {
+            return 'Null';
+        }
+
+        if (obj === undefined) {
+            return 'Undefined';
+        }
+
+        return Object.prototype.toString.call(obj).slice(8, -1);
+    };
+
+Object.inherit = Object.inherit || function (param) {
+        'use strict';
+        if (param === null) {
             throw TypeError();
         }
 
-        if (Object.create){
+        if (Object.create) {
             return Object.create(param);
         }
 
         var type = typeof param;
-        if (type !== 'object' && type !== 'function'){
+        if (type !== 'object' && type !== 'function') {
             throw TypeError();
         }
 
-        function f(){}
+        function f() {
+        }
+
         'use strict';
         f.prototype = param;
         return new f();
     };
 
-Object.intersection = Object.intersection || function(o,p){
+Object.intersection = Object.intersection || function (o, p) {
         'use strict';
         return Object.restrict(
-            Object.extend({},o),
+            Object.extend({}, o),
             p
         );
     };
 
-Object.keys = Object.keys || function(o){
+
+
+Object.isArrayLike = Object.isArrayLike || function (obj) {
+    'use strict';
+    return (obj &&
+        typeof obj === 'object' &&
+        isFinite(obj.length) &&
+        obj.length >= 0 &&
+        obj.length === Math.floor(obj.length) &&
+        obj.length < 4294967296
+    );
+};
+
+
+
+Object.keys = Object.keys || function (o) {
         'use strict';
-        if (typeof o !== 'object'){
+        if (typeof o !== 'object') {
             throw TypeError();
         }
 
         var result = [];
-        for (var property in o){
-            if (o.hasOwnProperty(property)){
+        for (var property in o) {
+            if (o.hasOwnProperty(property)) {
                 result.push(property);
             }
         }
         return result;
     };
 
-Object.merge = Object.merge || function(o,p){
+Object.merge = Object.merge || function (o, p) {
         'use strict';
-        for (var property in p){
+        for (var property in p) {
             if (o.hasOwnProperty([property])) {
                 continue;
             }
@@ -80,9 +111,9 @@ Object.merge = Object.merge || function(o,p){
         return o;
     };
 
-Object.restrict = Object.restrict || function(o,p){
+Object.restrict = Object.restrict || function (o, p) {
         'use strict';
-        for (var property in o){
+        for (var property in o) {
             if (!(property in p)) {
                 delete o[property];
             }
@@ -90,18 +121,18 @@ Object.restrict = Object.restrict || function(o,p){
         return o;
     };
 
-Object.subtract = Object.subtract || function(o,p){
+Object.subtract = Object.subtract || function (o, p) {
         'use strict';
-        for (var property in p){
+        for (var property in p) {
             delete o[property];
         }
         return o;
     };
 
-Object.union = Object.union || function(o,p){
+Object.union = Object.union || function (o, p) {
         'use strict';
         return Object.extend(
-            Object.extend({},o),
+            Object.extend({}, o),
             p
         );
     };
@@ -109,30 +140,40 @@ Object.union = Object.union || function(o,p){
 // -------------------------------------------------
 
 
-Object.method('isArray', function(){
+Object.method('isArray', function () {
     'use strict';
-   return isArray(this);
+    return Object.isArray(this);
 });
 
-Object.method('forEachOwnProperty', function(callback){
+Object.method('isArrayLike', function () {
     'use strict';
-    for (var property in this){
-       if (this.hasOwnProperty[property]){
+    return Object.isArrayLike(this);
+});
+
+Object.method('forEachOwnProperty', function (callback) {
+    'use strict';
+    for (var property in this) {
+        if (this.hasOwnProperty[property]) {
             callback(property);
-       }
+        }
     }
 });
 
-Object.method('keys', function(){
+Object.method('getClass', function(){
+    'use strict';
+    return Object.classOf(this);
+});
+
+Object.method('keys', function () {
     'use strict';
     return Object.keys(this);
 });
 
-Object.method('superior', function(name){
+Object.method('superior', function (name) {
     'use strict';
     var that = this;
     var method = that[name];
-    return function(){
+    return function () {
         'use strict';
         return method.apply(that, arguments);
     };

@@ -4,8 +4,8 @@
     <data-source name="MySQL - lxhub_unstable@localhost" uuid="796bb964-c2cc-4a06-94be-a6808dc3f394">
       <secret-storage>master_key</secret-storage>
       <user-name>dxuser</user-name>
-      <schema-pattern>lxhub_unstable.*</schema-pattern>
-      <default-schemas>lxhub_unstable.*</default-schemas>
+      <introspection-scope>lxhub_unstable:*</introspection-scope>
+      <resolve-scope>lxhub_unstable:*</resolve-scope>
     </data-source>
   </component>
 </project>

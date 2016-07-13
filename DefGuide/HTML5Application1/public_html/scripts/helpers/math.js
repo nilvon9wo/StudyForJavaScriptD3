@@ -4,6 +4,13 @@ var DefGuideMath = {
         return (x >= 0) ? x : -x;
     },
 
+    exponentiation: function (array){
+        'use strict';
+        return array.reduceRight(function(accumulator, value){
+           return Math.pow(value, accumulator);
+        });
+    },
+
     factorial: function factorial(n) {
         'use strict';
         if (n < 0){
@@ -31,14 +38,29 @@ var DefGuideMath = {
         'use strict';
         return Math.sqrt(x * x + y * y);
     },
+
+    max: function(array){
+        'use strict';
+        array.reduce(function(x, y){ return x > y ? x : y });
+    },
     
     plus1: function (x) {
         'use strict';
         return x + 1;
     },
+
+    product: function(array){
+        'use strict';
+        array.reduce(function(x, y){ return x * y }, 1);
+    },
     
     square: function (x) {
         "use strict";
         return x * x;
+    },
+
+    sum: function(array){
+        'use strict';
+        array.reduce(function(x, y){ return x + y }, 0);
     }
 };

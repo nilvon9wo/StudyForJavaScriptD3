@@ -34,34 +34,60 @@ arrayHelper = {
         }
         return typeof a < typeof b ? -1 : 1;
     },
-    isArray: function (value) {
-        return value &&
-                typeof value === 'object' &&
+    isArray: Array.isArray || function (value) {
+        return (typeof value === 'object') &&
+            ( Object.classOf && Object.classOf(value) === 'Array') ||
+            (value &&
                 typeof value.length === 'number' &&
-                typeof value.splice === 'function' &&
-                !(value.propertyIsEnumerable('length'));
+                typeof value.splice === 'function' && !(value.propertyIsEnumerable('length'))
+            );
     }
 };
 
 // Instance ---------------------------------------
 
-Array.method('areEqualArrays', function(a, b){
+Array.method('areEqualArrays', function (a, b) {
     'use strict';
     if (a.length != b.length) {
         return false;
     }
 
     try {
-        a.forEach(function(element, index){
-            if (element !== b[index]){
+        a.forEach(function (element, index) {
+            if (element !== b[index]) {
                 throw BreakException;
             }
         });
     }
-    catch (e){
+    catch (e) {
         return false;
     }
     return true;
+});
+
+Array.method('closeGaps', function () {
+    'use strict';
+    return this.filter(function (x) {
+        return x !== undefined && x !== null;
+    });
+});
+
+Array.method('findAllIndexes', function (x) {
+    'use strict';
+    var results = [];
+    var length = this.length;
+    var position = 0;
+
+    while (position < length) {
+        position = this.indexOf(x, position);
+        if (position === -1) {
+            break;
+        }
+        results.push(position);
+        position++;
+    }
+
+    return results;
 });
 
 Array.method('flatten', function makeFlat() {
@@ -82,7 +108,13 @@ Array.method('flatten', function makeFlat() {
 
         return newArray;
     }
+
     return makeFlat(this, []);
+});
+
+Array.method("forEachBreakable", function (func, t) {
+    "use strict";
+    return Array.forEachBreakable(this, func, t);
 });
 
 Array.method('isArray', function () {
@@ -93,7 +125,7 @@ Array.method('print', function () {
     'use strict';
     var length = this.length;
     var i = 0;
-    if (length === 0){
+    if (length === 0) {
         console.log("Empty Array");
     } else {
         do {
@@ -104,10 +136,9 @@ Array.method('print', function () {
 
 Array.method('push', function () {
     return this.splice.apply(
-            this,
-            [this.length, 0].
-            concat(Array.prototype.splice.apply(arguments))
-            );
+        this,
+        [this.length, 0].concat(Array.prototype.splice.apply(arguments))
+    );
     return this.length;
 });
 
@@ -150,8 +181,8 @@ Array.method('splice', function (_start, _deleteCount) {
 
     function recalcDeleteCount(start, _deleteCount) {
         var deleteCount = typeof _deleteCount === 'number' ?
-                _deleteCount :
-                oldLength;
+            _deleteCount :
+            oldLength;
         return max(min(deleteCount, oldLength - start), 0);
     }
 
@@ -191,39 +222,71 @@ Array.method('splice', function (_start, _deleteCount) {
 
 Array.method('unshift', function () {
     this.splice.apply(
-            this,
-            [0, 0].concat(Array.prototype.slice.apply(arguments))
-            );
+        this,
+        [0, 0].concat(Array.prototype.slice.apply(arguments))
+    );
     return this.length;
 });
 
 // Static --------------------------------------------
 
+Array.borrowFromPrototype = Array.borrowFromPrototype || function (methodName, array, arg1, arg3) {
+        'use strict';
+        return Array.prototype[methodName].call(array, arg1, arg2);
+    };
+
 Array.dim = Array.dim || function (dimension, initial) {
-    var array = [];
-    for (var i = 0; i < dimension; i++) {
-        array[i] = initial;
-    }
-    return array;
-};
+        var array = [];
+        for (var i = 0; i < dimension; i++) {
+            array[i] = initial;
+        }
+        return array;
+    };
+
+Array.forEachBreakable = Array.forEachBreakable || function (array, func, t) {
+        "use strict";
+        try {
+            array.forEach(func, t);
+        }
+        catch (e) {
+            if (e === Array.forEachBreakable.break) {
+                return;
+            } else {
+                throw e;
+            }
+        }
+    };
+Array.forEachBreakable.break = new Error('StopIteration');
 
 Array.identity = Array.identity || function (n) {
-    var matrix = Array.matrix(n, n, 0);
-    for (var i = 0; i < n; i++) {
-        matrix[i][i] = 1;
-    }
-    return matrix;
-};
+        var matrix = Array.matrix(n, n, 0);
+        for (var i = 0; i < n; i++) {
+            matrix[i][i] = 1;
+        }
+        return matrix;
+    };
+
+Array.join = Array.join || function (array, separator) {
+        return Array.borrowFromPrototype('join', array, separator);
+    };
+
+Array.map = Array.map || function (array, func, thisArg) {
+        return Array.borrowFromPrototype('map', array, func, thisArg);
+    };
 
 Array.matrix = Array.matrix || function (m, n, initial) {
-    var matrix = [];
-    for (var i = 0; i < m; i++) {
-        var innerArray = [];
-        for (var j = 0; j < n; j++) {
-            innerArray[j] = initial;
+        var matrix = [];
+        for (var i = 0; i < m; i++) {
+            var innerArray = [];
+            for (var j = 0; j < n; j++) {
+                innerArray[j] = initial;
+            }
+            matrix[i] = innerArray;
         }
-        matrix[i] = innerArray;
-    }
 
-    return matrix;
-};
+        return matrix;
+    };
+
+Array.slice = Array.slice || function (array, from, to) {
+        return Array.borrowFromPrototype('slice', array, from, to);
+    };

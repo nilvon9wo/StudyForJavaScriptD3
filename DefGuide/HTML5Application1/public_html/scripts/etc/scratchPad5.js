@@ -98,6 +98,18 @@ obj12.x = 2;
 Object.defineProperty(obj12, 'x', {value: 2});
 Object.defineProperty(obj12, 'x', {get: function(){ return 0;}});
 
+var p = {x:1};
+var o = Object.create(p);
 
+var obj13 = Object.seal(
+    Object.create(
+            Object.freeze({x:1}), {y: {value: 2, writable: true}}
+        )
+);
 
+var obj14 = {x:1, y: {z: [false, null, '']}};
+var string = JSON.stringify((obj14));
+var parsed = JSON.parse(string);
+
+string = new Point(1,1).toString();
 
