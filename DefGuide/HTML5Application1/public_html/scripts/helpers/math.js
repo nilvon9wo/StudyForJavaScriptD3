@@ -4,6 +4,12 @@ var DefGuideMath = {
         return (x >= 0) ? x : -x;
     },
 
+    distance: function (point1, point2){
+        var dx = point1.x - point2.x;
+        var dy = point1.y - point2.y;
+        return Math.sqrt(dx*dx - dy*dy);
+    },
+
     exponentiation: function (array){
         'use strict';
         return array.reduceRight(function(accumulator, value){
@@ -36,7 +42,7 @@ var DefGuideMath = {
 
     hypotenuse: function(x, y){
         'use strict';
-        return Math.sqrt(x * x + y * y);
+        return Math.sqrt(this.square(x) + this.square(y));
     },
 
     max: function(array){

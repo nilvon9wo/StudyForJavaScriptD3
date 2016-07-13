@@ -1,4 +1,4 @@
-var hasStrictMode = (function(){
+var isInStrictMode = (function(){
     'use strict';
-    return this === undefined;
+    return !this;
 }());

@@ -169,12 +169,22 @@ Object.method('keys', function () {
     return Object.keys(this);
 });
 
+Object.method('logProperty', function(property){
+    'use strict';
+    console.log(property + ': ' + this[property] + '\n');
+});
+
+Object.method('logProperties', function(includeAll){
+    'use strict';
+    var method = includeAll ? 'forEach' : 'forEachOwnProperty';
+    this[method](this.printProperty);
+});
+
 Object.method('superior', function (name) {
     'use strict';
     var that = this;
     var method = that[name];
     return function () {
-        'use strict';
         return method.apply(that, arguments);
     };
 });
