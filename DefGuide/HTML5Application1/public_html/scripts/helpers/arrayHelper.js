@@ -33,14 +33,6 @@ arrayHelper = {
             return a < b ? -1 : 1;
         }
         return typeof a < typeof b ? -1 : 1;
-    },
-    isArray: Array.isArray || function (value) {
-        return (typeof value === 'object') &&
-            ( Object.classOf && Object.classOf(value) === 'Array') ||
-            (value &&
-                typeof value.length === 'number' &&
-                typeof value.splice === 'function' && !(value.propertyIsEnumerable('length'))
-            );
     }
 };
 

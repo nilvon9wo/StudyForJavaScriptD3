@@ -1,4 +1,4 @@
-/* global DefGuideMath */
+/* global DGMath, Function */
 
 var data = {
     sort: function () {
@@ -14,12 +14,12 @@ var tenSquared = (function (x) {
 }(10));
 ({x: 1}).logProprties();
 
-var distance = DefGuideMath.distance;
+var distance = DGMath.distance;
 var total = distance(new Point(0, 0), new Point(2, 1)) +
         distance(new Point(2, 1), new Point(3, 5));
 
-var factorial = DefGuideMath.factorial;
-var probability = DefGuideMath.factorial(5) / DefGuideMath.factorial(5);
+var factorial = DGMath.factorial;
+var probability = DGMath.factorial(5) / DGMath.factorial(5);
 
 var obj = {};
 function func() {
@@ -62,7 +62,7 @@ function func(x, y, z) {
     // ... 
 }
 
-var largest = DefGuideMath.max(1, 10, 100, 2, 3, 1000, 4, 5, 10000, 6);
+var largest = DGMath.max(1, 10, 100, 2, 3, 1000, 4, 5, 10000, 6);
 
 function func2(x) {
     console.log(x);
@@ -71,6 +71,25 @@ function func2(x) {
 }
 
 
-var a = [1,2,3,4];
+var a = [1, 2, 3, 4];
 var b = [];
-easyCopy({from: a, to: b, length:4})
+easyCopy({from: a, to: b, length: 4});
+
+var s = DGMath.square;
+square(4);
+s(4);
+
+var array = [DGMath.square, 20];
+array[0](array(1));
+
+var operate = Function.operate;
+var add = DGMath.add;
+var multiply = DGMath.multiply;
+var i = operate(add,
+            operate(add, 2, 3),
+            operate(multiply, 4, 5)
+        );
+
+var operate = DGMath.operate.bind(DGMath);
+var j = operate('add', 'hello', operate('add', ' ', 'world'));
+var k = operate('pow', 10, 2);

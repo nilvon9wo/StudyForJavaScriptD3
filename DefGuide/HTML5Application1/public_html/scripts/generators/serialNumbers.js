@@ -4,7 +4,7 @@ var serialNumberGenerator = {
     set next(number){
         'use strict';
         if (number >= this.$number){
-            this.$number = number
+            this.$number = number;
         }
         else {
             throw "Serial number can only be set to a larger value";

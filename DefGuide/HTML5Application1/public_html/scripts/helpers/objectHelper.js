@@ -85,7 +85,15 @@ Object.intersection = Object.intersection || function (o, p) {
     };
 
 
-
+Object.isArray = Object.isArray || function (value) {
+        return (typeof value === 'object') &&
+            ( Object.classOf && Object.classOf(value) === 'Array') ||
+            (!!value &&
+                typeof value.length === 'number' &&
+                typeof value.splice === 'function' && !(value.propertyIsEnumerable('length'))
+            );
+    };
+    
 Object.isArrayLike = Object.isArrayLike || function (obj) {
     'use strict';
     return (obj &&
@@ -185,5 +193,9 @@ Object.method('superior', function (name) {
     return function () {
         return method.apply(that, arguments);
     };
+});
+
+Object.method('toArray', function () {
+    return Array.prototype.slice.call(this);
 });
 

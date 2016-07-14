@@ -1,13 +1,23 @@
-var DefGuideMath = {
+var DGMath = {
     absolute: function (x) {
         'use strict';
         return (x >= 0) ? x : -x;
+    },
+    
+    add: function(x,y) {
+        'use strict';
+        return x + y;  
     },
 
     distance: function (point1, point2){
         var dx = point1.x - point2.x;
         var dy = point1.y - point2.y;
         return Math.sqrt(dx*dx - dy*dy);
+    },
+
+    divide: function(x,y) {
+        'use strict';
+        return x / y;  
     },
 
     exponentiation: function (array){
@@ -19,6 +29,10 @@ var DefGuideMath = {
 
     factorial: function factorial(n) {
         'use strict';
+        if (!isFinite(n)){
+            throw new Error ('n must be finite');
+        }
+        
         if (n < 0){
             throw new Error('n muxt not be negative');
         }
@@ -28,7 +42,7 @@ var DefGuideMath = {
         }
 
         if (!factorial.memo){
-            factorial.memo = [];
+            factorial.memo = {1:1};
         }
 
         if (factorial.memo[n]){
@@ -40,21 +54,26 @@ var DefGuideMath = {
         return nextValue;
     },
 
-    flexiSum: function flexiSum(array){
+    flexiSum: function flexiSum(){
         var total = 0;
-        for (var index = 0; index < arguments.length; index++){
+        for (var index = 0; index < arguments.length; n = 0, index++){
             
             var element = arguments[index];
-            switch (element){
-                case (!element) : n = 0; break;
-                case (isArray(element)) : n = flexiSum.apply(this, element); break;
-                case ((typeof element === 'function')) : n = Number(element()); break;
-                default: n = Number(element);
+            if (element){
+                if (Object.isArray(element)) {
+                    n = flexiSum.apply(this, element);
+                } 
+                else if (typeof element === 'function'){
+                    n = flexiSum.apply(this, element());
+                }
+                else if (isNaN(element)){
+                    throw new Error ('flexiSum(): can\'t convert ' + element + ' to number');
+                }
+                else {
+                    n = Number(element);
+                }
             }
             
-            if (isNan(n)){
-                throw new Error ('flexiSum(): can\'t convert ' + element + ' to number');
-            }
             total += n;
         }
         return total;
@@ -72,16 +91,35 @@ var DefGuideMath = {
         return list.reduce(function(x, y){ return x > y ? x : y; }, max);
     },
     
+    multiply: function(x,y) {
+        'use strict';
+        return x * y;  
+    },
+    
+    operate: function(operation, operand1, operand2){
+        if (typeof this[operation] !== 'function'){
+            throw new Error ("Unknown operator");
+        }
+        return this[operation](operand1, operand2);
+    },
+
     plus1: function (x) {
         'use strict';
         return x + 1;
     },
+
+    power: Math.pow,
 
     product: function(array){
         'use strict';
         array.reduce(function(x, y){ return x * y; }, 1);
     },
     
+    subtract: function(x,y) {
+        'use strict';
+        return x - y;  
+    },
+
     square: function (x) {
         "use strict";
         return x * x;

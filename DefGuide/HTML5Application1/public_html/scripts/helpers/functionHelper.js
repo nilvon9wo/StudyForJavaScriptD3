@@ -1,5 +1,12 @@
 /* global Function */
 
+Function.operate = Function.operate || function(operator, operand1, operand2){
+    if (typeof operator !== 'function'){
+        throw new Error ('operator must be a function');
+    }
+    return operator(operand1, operand2);
+};
+
 Function.prototype.method = function (name, func) {
     if (!this.prototype[name]) {
         this.prototype[name] = func;
@@ -7,10 +14,6 @@ Function.prototype.method = function (name, func) {
         return this;
     }
 };
-
-Object.method('toArray', function () {
-    return Array.prototype.slice.call(this);
-});
 
 Function.method('bind', function (that) {
     var method = this;
@@ -34,13 +37,13 @@ Function.method('curry', function () {
     };
 });
 
+Function.method('inherits', function (Parent) {
+    this.prototype = new Parent();
+    return this;
+});
+
 Function.method('new', function () {
     var that = Object.create(this.prototype);
     var other = this.apply(that, arguments);
     return (typeof other === 'object' && other) || that;
-});
-
-Function.method('inherits', function (Parent) {
-    this.prototype = new Parent();
-    return this;
 });
