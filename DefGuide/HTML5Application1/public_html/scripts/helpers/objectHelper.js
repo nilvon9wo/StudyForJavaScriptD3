@@ -38,6 +38,21 @@ Object.classOf = Object.classOf || function (obj) {
         return Object.prototype.toString.call(obj).slice(8, -1);
     };
 
+Object.getPropertyNames = Object.getPropertyNames || function (obj, targetArray) {
+        'use strict';
+        if (typeof obj !== 'object') {
+            throw TypeError();
+        }
+
+        var result = (targetArray && targetArray.isArray()) || [];
+        for (var property in obj) {
+            if (obj.hasOwnProperty(property)) {
+                result.push(property);
+            }
+        }
+        return result;
+    };
+
 Object.inherit = Object.inherit || function (param) {
         'use strict';
         if (param === null) {
@@ -81,23 +96,6 @@ Object.isArrayLike = Object.isArrayLike || function (obj) {
         obj.length < 4294967296
     );
 };
-
-
-
-Object.keys = Object.keys || function (o) {
-        'use strict';
-        if (typeof o !== 'object') {
-            throw TypeError();
-        }
-
-        var result = [];
-        for (var property in o) {
-            if (o.hasOwnProperty(property)) {
-                result.push(property);
-            }
-        }
-        return result;
-    };
 
 Object.merge = Object.merge || function (o, p) {
         'use strict';
@@ -164,9 +162,9 @@ Object.method('getClass', function(){
     return Object.classOf(this);
 });
 
-Object.method('keys', function () {
+Object.method('getPropertyNames', function () {
     'use strict';
-    return Object.keys(this);
+    return Object.getPropertyNames(this);
 });
 
 Object.method('logProperty', function(property){

@@ -48,14 +48,14 @@ arrayHelper = {
 
 Array.method('areEqualArrays', function (a, b) {
     'use strict';
-    if (a.length != b.length) {
+    if (a.length !== b.length) {
         return false;
     }
 
     try {
         a.forEach(function (element, index) {
             if (element !== b[index]) {
-                throw BreakException;
+                throw Array.forEachBreakable.break;
             }
         });
     }
@@ -230,10 +230,41 @@ Array.method('unshift', function () {
 
 // Static --------------------------------------------
 
-Array.borrowFromPrototype = Array.borrowFromPrototype || function (methodName, array, arg1, arg3) {
+Array.borrowFromPrototype = Array.borrowFromPrototype || function (methodName, array, arg1, arg2) {
         'use strict';
         return Array.prototype[methodName].call(array, arg1, arg2);
     };
+
+Array.copy = Array.copy || function (from, fromStart, to, toStart, length) {
+    if (length < 0){
+        throw new Error ("Length must be a positive number");
+    }
+    
+    if (!from || fromStart > from.length - 1){
+        return [];
+    }
+    
+    var result = to || [];
+    var toIndex = toStart;
+    for (var fromIndex = fromStart; result.length < length || fromIndex > from.length - 1; fromIndex++){
+        if (from[fromIndex]){
+            result[toIndex] = from[fromIndex];
+            toIndex++;
+        }
+    }
+    
+    return result;
+};
+
+Array.easyCopy = Array.easyCopy || function (args) {
+    return Array.copy(
+            args.from,
+            args.fromStart || 0,
+            args.to,
+            args.toStart || 0,
+            args.length
+            );
+};
 
 Array.dim = Array.dim || function (dimension, initial) {
         var array = [];
