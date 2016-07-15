@@ -13,16 +13,43 @@ Object.defineProperty(Object.prototype, 'extend', {
     writable: true,
     enumerable: false,
     configurable: true,
-    value: function (o) {
-        var names = Object.getOwnPropertyNames(o);
-        names.forEach(function (name) {
-            if (!(name in this)) {
-                var desc = Object.getOwnPropertyDescriptor(o, name);
-                Object.defineProperty(this.name, desc);
-            }
-        });
-    }
+    value: (function () {
+        'use strict';
+        var extend = function (obj) {
+            var names = Object.getOwnPropertyNames(obj);
+            names.forEach(function (name) {
+                if (!(name in this)) {
+                    var desc = Object.getOwnPropertyDescriptor(obj, name);
+                    Object.defineProperty(this.name, name, desc);
+                }
+            });
+        };
 
+        var ieExtend = function (obj) {
+            var PROTOTYPE_PROPERTIES = [
+                "toString", "valueOf", "constructor", "hasOwnProperty",
+                "isPrototypeOf", "propertyIsEnumerable", "toLocaleString"
+            ];
+            for (var index = i; index < arguments.length; index++) {
+                var source = arguments[index];
+                for (var property in source) {
+                    obj[property] = source[property];
+                }
+                for (var j = 0; j < PROTOTYPE_PROPERTIES.length; j++) {
+                    var property = PROTOTYPE_PROPERTIES[j];
+                    if (source.hasOwnProperty(property)) {
+                        obj[property] = source[property];
+                    }
+                }
+            }
+        };
+
+        for (var property in {toString: null}) {
+            return extend;
+        }
+
+        return ieExtend;
+    }())
 });
 
 Object.classOf = Object.classOf || function (obj) {
@@ -93,17 +120,23 @@ Object.isArray = Object.isArray || function (value) {
                 typeof value.splice === 'function' && !(value.propertyIsEnumerable('length'))
             );
     };
-    
+
 Object.isArrayLike = Object.isArrayLike || function (obj) {
+        'use strict';
+        return (obj &&
+            typeof obj === 'object' &&
+            isFinite(obj.length) &&
+            obj.length >= 0 &&
+            obj.length === Math.floor(obj.length) &&
+            obj.length < 4294967296
+        );
+    };
+
+Object.isFunction = Object.isFunction || function (value) {
     'use strict';
-    return (obj &&
-        typeof obj === 'object' &&
-        isFinite(obj.length) &&
-        obj.length >= 0 &&
-        obj.length === Math.floor(obj.length) &&
-        obj.length < 4294967296
-    );
-};
+    return Object.prototype.toString.call(x) === '[object Function';
+    };
+
 
 Object.merge = Object.merge || function (o, p) {
         'use strict';
@@ -145,6 +178,22 @@ Object.union = Object.union || function (o, p) {
 
 // -------------------------------------------------
 
+Object.method('addPrivateProperty', function (name, predicate) {
+    var currentValue;
+    this['get' + name] = function () {
+        return currentValue;
+    };
+
+    this['set' + name] = function (newValue) {
+        if (predicate && !predicate(newValue)) {
+            throw new Error("set" + name + ": invalid value " + newValue);
+        }
+        else {
+            currentValue = newValue;
+        }
+    };
+});
+
 
 Object.method('isArray', function () {
     'use strict';
@@ -165,7 +214,7 @@ Object.method('forEachOwnProperty', function (callback) {
     }
 });
 
-Object.method('getClass', function(){
+Object.method('getClass', function () {
     'use strict';
     return Object.classOf(this);
 });
@@ -175,12 +224,12 @@ Object.method('getPropertyNames', function () {
     return Object.getPropertyNames(this);
 });
 
-Object.method('logProperty', function(property){
+Object.method('logProperty', function (property) {
     'use strict';
     console.log(property + ': ' + this[property] + '\n');
 });
 
-Object.method('logProperties', function(includeAll){
+Object.method('logProperties', function (includeAll) {
     'use strict';
     var method = includeAll ? 'forEach' : 'forEachOwnProperty';
     this[method](this.printProperty);

@@ -9,6 +9,11 @@ var DGMath = {
         return x + y;  
     },
 
+    biggest:  function(arrayOfNumbers){
+        "use strict";
+        return Math.max.apply(Math, arrayOfNumbers);
+    },
+
     distance: function (point1, point2){
         var dx = point1.x - point2.x;
         var dy = point1.y - point2.y;
@@ -120,11 +125,6 @@ var DGMath = {
         return x - y;  
     },
 
-    square: function (x) {
-        "use strict";
-        return x * x;
-    },
-
     sum: function(_list){
         'use strict';
         if (!Object.isArrayLike(_list)){
@@ -138,5 +138,10 @@ var DGMath = {
             }
             return x + y; 
         }, 0);
+    },
+
+    square: function (x) {
+        "use strict";
+        return x * x;
     }
 };

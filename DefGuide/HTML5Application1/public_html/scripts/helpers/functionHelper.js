@@ -1,5 +1,13 @@
 /* global Function */
 
+Function.check = Function.check || function(args){
+    var actual = args.length;
+    var expected = args.callee.length;
+    if (actual !== expected){
+        throw new Error ('Expected' + expected + 'args; got ' + actual);
+    }
+};
+
 Function.operate = Function.operate || function(operator, operand1, operand2){
     if (typeof operator !== 'function'){
         throw new Error ('operator must be a function');
@@ -15,17 +23,22 @@ Function.prototype.method = function (name, func) {
     }
 };
 
-Function.method('bind', function (that) {
-    var method = this;
-    var slice = Array.prototype.slice;
-    var args = slice.apply(arguments, [1]);
+Function.method('bind', function (obj) {
+    var self = this;
+    var boundArgs = arguments;
 
-    return function () {
-        return method.apply(
-                that,
-                args.concat(slice.apply(arguments, [0]))
-                );
-    };
+    return function(){
+        'use strict';
+        var args = [];
+        for (var i = 1; i < boundArgs.length; i++){
+            args.push(boundArgs[i]);
+        }
+        for (var i = 0; i < arguments.length; i++){
+            args.push(arguments[i]);
+        }
+
+        return self.apply(o, args);
+    }
 });
 
 Function.method('curry', function () {
@@ -47,3 +60,4 @@ Function.method('new', function () {
     var other = this.apply(that, arguments);
     return (typeof other === 'object' && other) || that;
 });
+

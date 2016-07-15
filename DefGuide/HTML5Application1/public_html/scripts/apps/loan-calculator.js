@@ -246,8 +246,8 @@ function calculate() {
         function buildLenderUrl() {
             var params = '';
             calculate.inputs.forEachOwnProperty(function (key) {
-                value = calculate.inputs[key];
-                params += '&' + key + '=' + encodeURIComponent(value);
+                currentValue = calculate.inputs[key];
+                params += '&' + key + '=' + encodeURIComponent(currentValue);
             });
             return "./lenders/getLenders.json?" + params.substring(1);
         }

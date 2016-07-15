@@ -7,7 +7,7 @@ var serialNumberGenerator = {
             this.$number = number;
         }
         else {
-            throw "Serial number can only be set to a larger value";
+            throw "Serial number can only be set to a larger currentValue";
         }
     }
 };

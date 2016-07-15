@@ -14,7 +14,7 @@ var obj1 = Object.create({x:1, y:2});
 var obj2 = Object.create(null);
 var obj3 = Object.create(Object.prototype);
 
-var obj4 = {x: 'don\'t change this value'};
+var obj4 = {x: 'don\'t change this currentValue'};
 var libraryFunction;
 libraryFunction(Object.inherit(obj4));
 
