@@ -1,6 +1,8 @@
+/* global Function */
+
 Boolean.not = Boolean.not || Function.partialLeft(
         Function.compose,
-        function(x){
+        function (x) {
             return !x;
         }
 );

@@ -1,3 +1,5 @@
+/* global isNaN */
+
 if (typeof Object.create !== 'function') {
     Object.create = function (obj) {
         'use strict';
