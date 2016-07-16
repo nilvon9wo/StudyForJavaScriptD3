@@ -1,40 +1,4 @@
-// Global ----------------------------------------------
-
-arrayHelper = {
-    compareBy: function (name, minor) {
-        return function (o, p) {
-            var a, b;
-            if (typeof o === 'object' && typeof p === 'object' && o && p) {
-                a = o[name];
-                b = p[name];
-                if (a === b) {
-                    return typeof minor === 'function' ? minor(o, p) : 0;
-                }
-                if (typeof a === typeof b) {
-                    return a < b ? -1 : 1;
-                }
-                return typeof a < typeof b ? -1 : 1;
-            } else {
-                throw {
-                    name: 'Error',
-                    message: 'Expected an object when sorting by ' + name
-                };
-            }
-        };
-    },
-    compareNumbers: function (a, b) {
-        a - b;
-    },
-    compareSimpleValues: function (a, b) {
-        if (a === b) {
-            return 0;
-        }
-        if (typeof a === typeof b) {
-            return a < b ? -1 : 1;
-        }
-        return typeof a < typeof b ? -1 : 1;
-    }
-};
+/* global arrayHelper */
 
 // Instance ---------------------------------------
 
@@ -110,7 +74,17 @@ Array.method("forEachBreakable", function (func, t) {
 });
 
 Array.method('isArray', function () {
-    return arrayHelper.isArray(this);
+    return Object.isArray(this);
+});
+
+Array.method('map', function(func){
+    var results = [];
+    for (var index = 0, length = this.length; index < length; index++){
+        if (index in this){
+            results[index] = func.call(null, this[index], index, this);
+        }
+    }
+    return results;
 });
 
 Array.method('print', function () {
@@ -134,11 +108,39 @@ Array.method('push', function () {
     return this.length;
 });
 
-Array.method('reduce', function (func, value) {
-    for (var i = 0; i < this.length; i += 1) {
-        value = func(this[i], value);
+Array.method('reduce', function reduce (func, initial) {
+    var index = 0;
+    var length = this.length;
+    var accumulator;
+    
+    if (arguments.length > 1) {
+        accumulator = initial;
     }
-    return value;
+    else {
+        if (length === 0){
+            throw new TypeError;
+        }
+        
+        while(index < length){
+            if (index in this){
+                accumulator = this[index++];
+                break
+            }
+            else index++;
+        }
+        if (index === length){
+            throw TypeError();
+        }
+    }
+    
+    while (index < length){
+        if (index in this){
+            accumulator = func.call(undefined, accumulator, this.index, index, this);
+        }
+        index++;
+    }
+
+    return accumulator;
 });
 
 Array.method('shift', function () {
@@ -227,6 +229,42 @@ Array.borrowFromPrototype = Array.borrowFromPrototype || function (methodName, a
         return Array.prototype[methodName].call(array, arg1, arg2);
     };
 
+Array.compareBy = Array.compareBy || function (name, minor) {
+        return function (o, p) {
+            var a, b;
+            if (typeof o === 'object' && typeof p === 'object' && o && p) {
+                a = o[name];
+                b = p[name];
+                if (a === b) {
+                    return typeof minor === 'function' ? minor(o, p) : 0;
+                }
+                if (typeof a === typeof b) {
+                    return a < b ? -1 : 1;
+                }
+                return typeof a < typeof b ? -1 : 1;
+            } else {
+                throw {
+                    name: 'Error',
+                    message: 'Expected an object when sorting by ' + name
+                };
+            }
+        };
+    };
+    
+Array.compareNumbers = Array.compareNumbers || function (a, b) {
+        a - b;
+    };
+    
+Array.compareSimpleValues = Array.compareSimpleValues || function (a, b) {
+        if (a === b) {
+            return 0;
+        }
+        if (typeof a === typeof b) {
+            return a < b ? -1 : 1;
+        }
+        return typeof a < typeof b ? -1 : 1;
+    };
+
 Array.copy = Array.copy || function (from, fromStart, to, toStart, length) {
     if (length < 0){
         throw new Error ("Length must be a positive number");
@@ -296,6 +334,13 @@ Array.join = Array.join || function (array, separator) {
 Array.map = Array.map || function (array, func, thisArg) {
         return Array.borrowFromPrototype('map', array, func, thisArg);
     };
+    
+Array.mapper = Array.mapper || function(func){
+    'use strict';
+    return function(array){
+        return array.map(func);
+    };
+};
 
 Array.matrix = Array.matrix || function (m, n, initial) {
         var matrix = [];

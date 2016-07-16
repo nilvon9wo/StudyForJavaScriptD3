@@ -30,7 +30,7 @@ Object.defineProperty(Object.prototype, 'extend', {
                 "toString", "valueOf", "constructor", "hasOwnProperty",
                 "isPrototypeOf", "propertyIsEnumerable", "toLocaleString"
             ];
-            for (var index = i; index < arguments.length; index++) {
+            for (var index = 1; index < arguments.length; index++) {
                 var source = arguments[index];
                 for (var property in source) {
                     obj[property] = source[property];
@@ -53,128 +53,134 @@ Object.defineProperty(Object.prototype, 'extend', {
 });
 
 Object.classOf = Object.classOf || function (obj) {
-        'use strict';
-        if (obj === null) {
-            return 'Null';
-        }
+    'use strict';
+    if (obj === null) {
+        return 'Null';
+    }
 
-        if (obj === undefined) {
-            return 'Undefined';
-        }
+    if (obj === undefined) {
+        return 'Undefined';
+    }
 
-        return Object.prototype.toString.call(obj).slice(8, -1);
-    };
+    return Object.prototype.toString.call(obj).slice(8, -1);
+};
 
 Object.getPropertyNames = Object.getPropertyNames || function (obj, targetArray) {
-        'use strict';
-        if (typeof obj !== 'object') {
-            throw TypeError();
-        }
+    'use strict';
+    if (typeof obj !== 'object') {
+        throw TypeError();
+    }
 
-        var result = (targetArray && targetArray.isArray()) || [];
-        for (var property in obj) {
-            if (obj.hasOwnProperty(property)) {
-                result.push(property);
-            }
+    var result = (targetArray && targetArray.isArray()) || [];
+    for (var property in obj) {
+        if (obj.hasOwnProperty(property)) {
+            result.push(property);
         }
-        return result;
-    };
+    }
+    return result;
+};
 
 Object.inherit = Object.inherit || function (param) {
-        'use strict';
-        if (param === null) {
-            throw TypeError();
-        }
+    'use strict';
+    if (param === null) {
+        throw TypeError();
+    }
 
-        if (Object.create) {
-            return Object.create(param);
-        }
+    if (Object.create) {
+        return Object.create(param);
+    }
 
-        var type = typeof param;
-        if (type !== 'object' && type !== 'function') {
-            throw TypeError();
-        }
+    var type = typeof param;
+    if (type !== 'object' && type !== 'function') {
+        throw TypeError();
+    }
 
-        function f() {
-        }
+    function f() {
+    }
 
-        'use strict';
-        f.prototype = param;
-        return new f();
-    };
+    'use strict';
+    f.prototype = param;
+    return new f();
+};
 
 Object.intersection = Object.intersection || function (o, p) {
-        'use strict';
-        return Object.restrict(
+    'use strict';
+    return Object.restrict(
             Object.extend({}, o),
             p
-        );
-    };
+            );
+};
 
 
 Object.isArray = Object.isArray || function (value) {
-        return (typeof value === 'object') &&
-            ( Object.classOf && Object.classOf(value) === 'Array') ||
+    return (typeof value === 'object') &&
+            (Object.classOf && Object.classOf(value) === 'Array') ||
             (!!value &&
-                typeof value.length === 'number' &&
-                typeof value.splice === 'function' && !(value.propertyIsEnumerable('length'))
-            );
-    };
+                    typeof value.length === 'number' &&
+                    typeof value.splice === 'function' && !(value.propertyIsEnumerable('length'))
+                    );
+};
 
 Object.isArrayLike = Object.isArrayLike || function (obj) {
-        'use strict';
-        return (obj &&
+    'use strict';
+    return (obj &&
             typeof obj === 'object' &&
             isFinite(obj.length) &&
             obj.length >= 0 &&
             obj.length === Math.floor(obj.length) &&
             obj.length < 4294967296
-        );
-    };
+            );
+};
 
 Object.isFunction = Object.isFunction || function (value) {
     'use strict';
-    return Object.prototype.toString.call(x) === '[object Function';
-    };
+    return Object.prototype.toString.call(value) === '[object Function';
+};
 
+Object.isNumber = Object.isNumber || Boolean.not(isNaN);
 
 Object.merge = Object.merge || function (o, p) {
-        'use strict';
-        for (var property in p) {
-            if (o.hasOwnProperty([property])) {
-                continue;
-            }
-
-            o[property] = p[property];
+    'use strict';
+    for (var property in p) {
+        if (o.hasOwnProperty([property])) {
+            continue;
         }
-        return o;
-    };
+
+        o[property] = p[property];
+    }
+    return o;
+};
 
 Object.restrict = Object.restrict || function (o, p) {
-        'use strict';
-        for (var property in o) {
-            if (!(property in p)) {
-                delete o[property];
-            }
-        }
-        return o;
-    };
-
-Object.subtract = Object.subtract || function (o, p) {
-        'use strict';
-        for (var property in p) {
+    'use strict';
+    for (var property in o) {
+        if (!(property in p)) {
             delete o[property];
         }
-        return o;
-    };
+    }
+    return o;
+};
+
+Object.subtract = Object.subtract || function (o, p) {
+    'use strict';
+    for (var property in p) {
+        delete o[property];
+    }
+    return o;
+};
+
+Object.toArray = Object.toArray || function (array, startIndex) {
+    n = n || 0;
+    return Array.prototype.slice.call(array, startIndex);
+};
 
 Object.union = Object.union || function (o, p) {
-        'use strict';
-        return Object.extend(
+    'use strict';
+    return Object.extend(
             Object.extend({}, o),
             p
-        );
-    };
+            );
+};
 
 // -------------------------------------------------
 
@@ -187,8 +193,7 @@ Object.method('addPrivateProperty', function (name, predicate) {
     this['set' + name] = function (newValue) {
         if (predicate && !predicate(newValue)) {
             throw new Error("set" + name + ": invalid value " + newValue);
-        }
-        else {
+        } else {
             currentValue = newValue;
         }
     };
@@ -244,7 +249,8 @@ Object.method('superior', function (name) {
     };
 });
 
-Object.method('toArray', function () {
-    return Array.prototype.slice.call(this);
+Object.method('toArray', function (startIndex) {
+    'use strict';
+    return Object.toArray(this, startIndex);
 });
 

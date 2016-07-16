@@ -1,3 +1,5 @@
+/* global Document */
+
 Document.method('getElementsByIds', function(elements){
     'use strict';
     var collection = {};
