@@ -260,7 +260,7 @@ calculate.onload = function () {
             calculate.INPUT_ELEMENTS.forEach(function(key){
                 calculate.inputs[key].value = localStorage['loan_' + key];
             });
-        console.log('loaded', calculate.inputs);
+            calculate();
     }
 };
 
