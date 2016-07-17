@@ -1,7 +1,7 @@
-/* global AbstractHelper, AbstractEnumerableSet, AbstractWritableSet */
+/* global net */
 
-var ArraySet = (function () {
-    var constructor = function ArraySet() {
+net.nowhereatall.registerSet('ArraySet', function () {
+    var constructor = function () {
         this.values = [];
         this.add.apply(this, arguments);
     };
@@ -37,5 +37,6 @@ var ArraySet = (function () {
         }
     };
 
-    return AbstractWritableSet.defineSubclass(constructor, methods);
+    return net.nowhereatall.collections.sets.AbstractWritableSet.defineSubclass(constructor, methods);
+
 }());

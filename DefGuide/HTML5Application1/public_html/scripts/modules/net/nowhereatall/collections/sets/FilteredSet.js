@@ -1,7 +1,7 @@
-/* global Set, Class */
+/* global net */
 
-var FilteredSet = (function () {
-    var constructor = function FilteredSet(set, filter) {
+net.nowhereatall.registerSet('FilteredSet', function () {
+    var constructor = function (set, filter) {
         this.set = set;
         this.filter = filter;
     };
@@ -35,9 +35,8 @@ var FilteredSet = (function () {
         }
     };
 
-    return Class.defineJavalikeClass(constructor, methods);
+    return net.nowhereatall.collections.sets.Set.defineSubclass(constructor, methods);
 }());
-
 
 
 

@@ -1,6 +1,6 @@
-/* global AbstractEnumerableSet */
+/* global net */
 
-var SingletonSet = (function () {
+net.nowhereatall.registerSet('SingletonSet', function () {
     var constructor = function (member) {
         this.member = member;
     };
@@ -17,5 +17,8 @@ var SingletonSet = (function () {
         }
     };
 
-    return AbstractEnumerableSet.defineSubclass(constructor, methods);
+    return net.nowhereatall.collections.sets.AbstractEnumerableSet.defineSubclass(constructor, methods);
 }());
+
+
+

@@ -1,22 +1,6 @@
-function Set() {
-    this.values = {};
-    this.n = 0;
-    if (arguments.length === 1 && Object.isArrayLike(arguments[0])) {
-        this.add.apply(this, arguments[0]);
-        ;
-    } else if (arguments.length > 0) {
-        this.add.apply(this, arguments);
-    }
-}
-Set.OBJECT_ID = '|**objectId**|';
-Set.extend({
-    fromArray: function (array) {
-        var set = new Set();
-        set.add.apply(set, array);
-        return set;
-    }
-});
-Set.extendPrototype(function () {
+/* global net */
+
+net.nowhereatall.registerSet('Set', function () {
     function valueToString(value) {
         switch (value) {
             case undefined:
@@ -34,20 +18,31 @@ Set.extendPrototype(function () {
                     case 'string':
                         return '"' + value;
                     default:
-                        return '@' + objectId(value);
+                        return '@' + Object.objectId(value);
                 }
         }
-
-        function objectId(obj) {
-            var property = Set.OBJECT_ID;
-            if (!obj.hasOwnProperty(property)) {
-                obj[property] = Set._valueToString.next++;
-            }
-            return obj[property];
-        }
     }
-    valueToString.next = 100;
-    return{
+
+    var Set = function () {
+        this.values = {};
+        this.n = 0;
+        if (arguments.length === 1 && Object.isArrayLike(arguments[0])) {
+            this.add.apply(this, arguments[0]);
+            ;
+        } else if (arguments.length > 0) {
+            this.add.apply(this, arguments);
+        }
+    };
+
+    Set.extend({
+        fromArray: function (array) {
+            var set = new Set();
+            set.add.apply(set, array);
+            return set;
+        }
+    });
+
+    Set.extendPrototype({
         add: function () {
             var self = this;
             arguments.toArray().forEach(function (value) {
@@ -126,5 +121,10 @@ Set.extendPrototype(function () {
             });
             return string + "}";
         }
-    };
+    });
+
+    return Set;
 }());
+
+
+

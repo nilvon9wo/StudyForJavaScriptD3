@@ -1,7 +1,9 @@
-/* global AbstractSet, AbstractHelper */
+/* global AbstractHelper, net */
 
-var AbstractEnumerableSet = (function () {
-    var constructor = AbstractHelper.constructor();
+net.nowhereatall.registerSet('AbstractEnumerableSet', (function () {
+    var constructor = function AbstractEnumerableSet() {
+        AbstractHelper.constructor();
+    };
 
     var methods = {
         equals: function (that) {
@@ -55,5 +57,8 @@ var AbstractEnumerableSet = (function () {
         }
     };
 
-    return AbstractSet.defineSubclass(constructor, methods);
-}());
+    return net.nowhereatall.collections.sets.AbstractSet.defineSubclass(constructor, methods);
+}()));
+
+
+
