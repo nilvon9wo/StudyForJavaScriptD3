@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Event Handlers</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="">
+    </head>
+    <body>
+        <input type="checkbox" name="options" value="giftwrap" 
+               onchange="order.options.giftwrap = this.checked;"
+               />
+        <a href="javascript:new Date().toLocaleTimeString();">
+            What time is it?
+        </a>
+        <a href="javascript:alert(new Date().toLocaleTimeString());">
+            Check the time without overwriting the document.
+        </a>
+        <a href="javascript:void window.open('about:blank');">
+            Open Window.
+        </a>
+        <a href="javascript:
+           var e = '';
+           var r = '';
+           do {
+            e = prompt('Expression: ' + e + '\n' + r + '\n', e);
+            try {
+                r = 'Result: ' + eval(e);
+            }
+            catch (ex) {
+                r = ex;
+            }
+           } while(e);
+           void 0;
+           ">
+            JavaScript Evalutor
+        </a>
+        <script>
+            var order = {
+                options: {}
+            };
+        </script>
+    </body>
+</html>
