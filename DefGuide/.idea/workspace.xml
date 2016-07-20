@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a37c9371-bee7-452d-9405-cdf03a22dacc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HTML5Application1/public_html/factorialsGeneratedOnLoad.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HTML5Application1/public_html/scripts/apps/factorialsGeneratedOnLoad.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/loadAsync.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HTML5Application1/public_html/xss.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AsynchronousIOwithNode/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../AsynchronousIOwithNode/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HTML5Application1/public_html/scripts/JavaScriptObjectExtensions/Math.js" afterPath="$PROJECT_DIR$/HTML5Application1/public_html/scripts/JavaScriptObjectExtensions/Math.js" />
     </list>
     <ignored path="DefGuide.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,14 +36,55 @@
     <favorites_list name="DefGuide" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="xss.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/xss.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vbsTest.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/vbsTest.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scratch-pad-3.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scratch-pad-3.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="factorialsGeneratedOnLoad.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/factorialsGeneratedOnLoad.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="6" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -52,12 +99,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/scripts/etc/moveOn.js" />
-        <option value="$PROJECT_DIR$/src/scripts/etc/debug.js" />
-        <option value="$PROJECT_DIR$/src/scripts/helpers/debugHelper.js" />
-        <option value="$PROJECT_DIR$/src/styles/dynamic.css" />
-        <option value="$PROJECT_DIR$/src/scripts/helpers/styleHelper.js" />
-        <option value="$PROJECT_DIR$/src/scripts/helpers/hideHelper.js" />
         <option value="$PROJECT_DIR$/src/scripts/helpers/highlightHelper.js" />
         <option value="$PROJECT_DIR$/src/scripts/helpers/hide.js" />
         <option value="$PROJECT_DIR$/src/scripts/helpers/highlight.js" />
@@ -103,6 +144,12 @@
         <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/ecmaPad2.es6.js" />
         <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/e4xPad.e4x.js" />
         <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/periodicTable.e4x.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/contentGeneratedOnLoad.html" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/JavaScriptObjectExtensions/Math.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/factorialsGeneratedOnLoad.html" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/apps/factorialsGeneratedOnLoad.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/loadAsync.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/xss.html" />
       </list>
     </option>
   </component>
@@ -166,8 +213,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -262,7 +307,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="helpers" />
+              <option name="myItemId" value="etc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -291,9 +336,41 @@
               <option name="myItemId" value="etc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clientSide" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DefGuide" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DefGuide" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HTML5Application1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public_html" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -327,7 +404,7 @@
       <recent name="E:\Tutorials\D2toD3\DefGuide\src\scripts\helpers" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.factorial-dialog.html">
+  <component name="RunManager" selected="JavaScript Debug.factorialsGeneratedOnLoad.html">
     <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DefGuide/src/index.html">
       <method />
     </configuration>
@@ -335,6 +412,9 @@
       <method />
     </configuration>
     <configuration default="false" name="factorial-dialog.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DefGuide/HTML5Application1/public_html/factorial-dialog.html">
+      <method />
+    </configuration>
+    <configuration default="false" name="factorialsGeneratedOnLoad.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DefGuide/HTML5Application1/public_html/factorialsGeneratedOnLoad.html">
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -365,10 +445,7 @@
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
-      <method>
-        <option name="Make" enabled="true" />
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
@@ -391,10 +468,7 @@
       <Profilers>
         <option name="GAPID_DISABLE_PCS" value="false" />
       </Profilers>
-      <method>
-        <option name="Make" enabled="true" />
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
@@ -582,6 +656,9 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -669,6 +746,19 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
       <method />
     </configuration>
@@ -689,16 +779,18 @@
       <envs />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
       <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.loan-calculator.html" />
       <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.factorial-dialog.html" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.factorialsGeneratedOnLoad.html" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.factorial-dialog.html" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.loan-calculator.html" />
-        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.factorialsGeneratedOnLoad.html" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.factorial-dialog.html" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.loan-calculator.html" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -746,11 +838,12 @@
       <workItem from="1468913597873" duration="604000" />
       <workItem from="1468948120912" duration="174000" />
       <workItem from="1468948322075" duration="117000" />
+      <workItem from="1469029437030" duration="5995000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65560000" />
+    <option name="totallyTimeSpent" value="71555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
@@ -768,7 +861,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19349681" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19349681" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Atlassian " active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -808,14 +901,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/scripts/helpers/arrayHelper.js" />
-    <entry file="file://$PROJECT_DIR$/src/scripts/helpers/functionHelper.js" />
-    <entry file="file://$PROJECT_DIR$/src/scripts/helpers/HTMLCollectionHelper.js" />
-    <entry file="file://$PROJECT_DIR$/src/index.html" />
-    <entry file="file://$PROJECT_DIR$/src/scripts/etc/loadImages.js" />
-    <entry file="file://$PROJECT_DIR$/src/scripts/helpers/debug.js" />
-    <entry file="file://$PROJECT_DIR$/src/styles/dynamic.css" />
-    <entry file="file://$PROJECT_DIR$/src/styles/loan-calculator.css" />
     <entry file="file://$PROJECT_DIR$/src/loan-calculator.html" />
     <entry file="file://$PROJECT_DIR$/src/scripts/apps/loan-calculator.js" />
     <entry file="file://$PROJECT_DIR$/src/scripts/helpers/objectHelper.js" />
@@ -1060,6 +1145,72 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
           <caret line="45" column="40" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/digitalClock.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/JavaScriptObjectExtensions/Math.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-496">
+          <caret line="32" column="2" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="2" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/apps/factorialsGeneratedOnLoad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="42" column="17" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/loadAsync.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/vbsTest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scratch-pad-3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/factorialsGeneratedOnLoad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/xss.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>

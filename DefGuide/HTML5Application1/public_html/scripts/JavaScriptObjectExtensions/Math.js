@@ -15,7 +15,7 @@ Math.biggest = Math.biggest || function (arrayOfNumbers) {
     return Math.max.apply(Math, arrayOfNumbers);
 };
 
-Math.cuberoot = Math.cuberoot || partialRight(Math.pow, 1 / 3);
+Math.cuberoot = Math.cuberoot || Function.partialRight(Math.pow, 1 / 3);
 
 Math.deviations = Math.deviations || function (numbers) {
     'use strict';
