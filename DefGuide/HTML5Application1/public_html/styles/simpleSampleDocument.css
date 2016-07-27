@@ -1,0 +1,4 @@
+.warning{ color: orange; }
+.error{ color: red; }
+.fatal{ background-color: black; }
+.sparkline{ text-decoration: underline; }

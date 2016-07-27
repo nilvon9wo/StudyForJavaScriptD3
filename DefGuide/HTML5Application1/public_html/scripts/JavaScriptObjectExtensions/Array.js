@@ -200,7 +200,9 @@ Array.extendPrototype({
         var results = [];
         for (var index = 0, length = this.length; index < length; index++) {
             if (index in this) {
+                if (func && typeof func === 'function'){
                 results[index] = func.call(null, this[index], index, this);
+                }
             }
         }
         return results;
@@ -260,7 +262,7 @@ Array.extendPrototype({
     shift: function () {
         return this.splice(0, 1)[0];
     },
-    sort: function() {
+    sort: function () {
         var start = new Date();
         Array.originalSort.apply(this, arguments);
         var end = new Date();
@@ -321,14 +323,12 @@ Array.extendPrototype({
                 var oldIndex = positiveDelta ? j - delta : oldLength - j;
                 array[newIndex] = array[oldIndex];
             }
-            console.log('shift', array);
         }
 
         function insertElements(array, args, start, insertCount) {
             for (var k = 0; k < insertCount; k++) {
                 array[start + k] = args[k + 2];
             }
-            console.log('insert', array);
         }
     },
     unshift: function () {
