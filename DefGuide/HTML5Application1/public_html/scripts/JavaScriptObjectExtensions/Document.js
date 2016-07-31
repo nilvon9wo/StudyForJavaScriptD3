@@ -1,5 +1,42 @@
 /* global Document */
 
+Document.embolden = Document.embolden || function(node) {
+    if (typeof node === 'string'){
+        node = document.getElementById(node);
+    }
+    
+    var parent = node.parentNode;
+    var boldElement = document.createElement('b');
+    parent.replaceChild(boldElement, node);
+    boldElement.appendChild(node);
+};
+
+Document.getSelectedText = Document.getSelectedText || function() {
+    if (window.getSelection) {
+        return window.getSelection().toString();
+    } else if (document.selection) {
+        return document.selection.createRange().text;
+    }
+};
+
+Document.insertAt = Document.insertAt || function (parent, child, index) {
+  if (index < 0 || index > parent.childNodes.length) {
+      throw new Error ('invalid index');
+  } else if (index === parent.childNodes.length) {
+      parent.appendChild(child); 
+  } else {
+      parent.insertBefore(child, parent.childNodes[index]);
+  }
+};
+
+Document.reverseChildrenOf = Document.reverseChildrenOf || function (node) {
+    var fragment = document.createDocumentFragment();
+    while (node.lastChild) {
+        fragment.appendChild(node.lastChild);
+    }
+    node.appendChild(fragment);
+};
+
 Document.method('getElementsByIds', function () {
     'use strict';
     var args = arguments.toArray();

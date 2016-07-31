@@ -1,0 +1,16 @@
+#draggedElement {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    width: 250px;
+    background-color: white;
+    border: solid black;
+}
+
+#titlebar {
+    background-color: gray;
+    border-bottom: dotted black;
+    padding: 3px;
+    font-family: sans-serif;
+    font-weight: bold;
+}

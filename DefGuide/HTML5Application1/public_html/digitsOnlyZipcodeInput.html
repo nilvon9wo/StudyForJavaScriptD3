@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Digits Only Zipcode Input</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="">
+        <link href="styles/digitsOnlyZipcodeInput.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <form>
+            <label for="zip">
+                Zipcode:
+                <input id="zip" type="text"
+                       data-allowed-chars="0123456789"
+                       data-messageid="zipwarn" />
+            </label>
+            <span id="zipwarn">Digits only</span>
+        </form>
+        <script src="scripts/JavaScriptObjectExtensions/Object.js" type="text/javascript"></script>
+        <script src="scripts/helpers/eventHelper.js" type="text/javascript"></script>
+        <script src="scripts/helpers/whenReady.js" type="text/javascript"></script>
+        <script src="scripts/apps/digitsOnlyZipcodeInput.js" type="text/javascript"></script>
+    </body>
+</html>

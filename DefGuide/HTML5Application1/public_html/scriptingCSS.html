@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Document</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="">
+        <link href="styles/scriptingCSS.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <p class="overview">Sweat Jane never closes her eyes.</p>
+        <p class="secondWay" id="young">
+            This paragraph has increased margins and 
+            is surrounded by a rectangular red border.
+        </p>
+        <p>Testing, testing</p>
+        <div class="move100x100">Playing with fire!</div>
+        <div class="smallBlueSquare"></div>
+        <div class="blackBorder" id="sectionTitle">
+            <p>
+                <span class="shadowed1">Shadowed 1</span>
+            </p>
+            <p>
+                <span id="shadowCaster">Shadowed 2
+                    <span class="shadowed2">Shadowed 2</span>
+                </span>
+            </p>
+            <div class="boxSizing"></div>
+            <div class="calculated"></div>
+        </div>
+        <button onclick="cssHelper.shake(this, cssHelper.fadeOut);">Shake and Fade</button>
+        <script src="scripts/etc/clientSide/scriptedCssPad.js" type="text/javascript"></script>
+        <script src="scripts/helpers/cssHelper.js" type="text/javascript"></script>
+    </body>
+</html>

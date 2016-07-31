@@ -1,0 +1,25 @@
+h1, h2 {
+    color: blue;
+    font-style: italic;
+}
+.WARNING {
+    font-weight: bold;
+    font-size: 150%;
+    margin: 0 1in 0 1in; 
+    background-color: yellow;
+    border: solid red 8px;
+    padding: 10px;
+}
+
+.WARNING h1, .WARNING h2 {
+    text-align: center;
+}
+
+#override {
+    text-transform: none;
+}
+
+#special {
+    text-align: center;
+    text-transform: uppercase;
+}

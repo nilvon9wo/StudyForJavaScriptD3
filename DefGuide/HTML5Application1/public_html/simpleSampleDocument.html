@@ -17,13 +17,59 @@
         <section id="section1">
             <h2>Section One</h2>
         </section>
-        <form name="shipping_address">
-            <input type="radio" id="red_radio" name="favourite_color" value="red"/><label for="red_radio">Red</label>
-            <input type="radio" id="yellow_radio" name="favourite_color" value="orange"/><label for="orange_radio">Orange</label>
-            <input type="radio" id="orange_radio" name="favourite_color" value="yellow"/><label for="yellow_radio">Yellow</label>
-            <input type="radio" id="green_radio" name="favourite_color" value="green"/><label for="green_radio">Green</label>
-            <input type="radio" id="blue_radio" name="favourite_color" value="blue"/><label for="blue_radio">Blue</label>
-            <input type="radio" id="purple_radio" name="favourite_color" value="purple"/><label for="purple_radio">Purple</label>
+        <form id="shipping" name="shipping"
+              onreset="return confirm('Really erase ALL input and start over?')"
+              >
+            <label for="arrival_date">
+                Arrival Date:
+                <input type="text" id="arrival_date" name="arrival" placeholder="yyyy-mm-dd" />
+            </label>
+            
+            <fieldset>
+                <label for="address">
+                    Address
+                    <input id="address" />
+                </label>
+
+                <label for="country">
+                    <select id="country"></select>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Shipping Method</legend>
+                <label for="first_class_radio">
+                    <input type="radio" id="first_class_radio" name="shippingMethod" value="first_class"/>
+                    First-class
+                </label>
+                <label for="2_day_air_radio">
+                    <input type="radio" id="2_day_air_radio" name="shippingMethod" value="2_day_air"/>
+                    2-day Air
+                </label>
+                <label for="overnight_radio">
+                    <input type="radio" id="overnight_radio" name="shippingMethod" value="overnight"/>
+                    Overnight
+                </label>
+                <label for="regular_air_mail_radio">
+                    <input type="radio" id="regular_air_mail_radio" name="shippingMethod" value="regular_air_mail"/>
+                    Regular Air Mail
+                </label>
+                <label for="registered_air_mail_radio">
+                    <input type="radio" id="registered_air_mail_radio" name="shippingMethod" value="registered_air_mail"/>
+                    Registered Air Mail
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Favourite Colour</legend>
+                <label for="red_radio"><input type="radio" id="red_radio" name="favourite_color" value="red"/>Red</label>
+                <label for="orange_radio"><input type="radio" id="orange_radio" name="favourite_color" value="orange"/>Orange</label>
+                <label for="yellow_radio"><input type="radio" id="yellow_radio" name="favourite_color" value="yellow"/>Yellow</label>
+                <label for="green_radio"><input type="radio" id="green_radio" name="favourite_color" value="green"/>Green</label>
+                <label for="blue_radio"><input type="radio" id="blue_radio" name="favourite_color" value="blue"/>Blue</label>
+                <label for="purple_radio"><input type="radio" id="purple_radio" name="favourite_color" value="purple"/>Purple</label>
+            </fieldset>
+            <button type="reset">Clear and Start Over</button>
         </form>
         <span>Please, please, please!</span>
         <img id="myimage"
@@ -34,6 +80,22 @@
             <p class="fatal error">Two fools are movie stars.</p>
         </div>
         <span class='sparkline' data-ymin='0' data-ymax='10'>1 1 1 2 2 3 4 5 5 4 3 5 6 7 7 4 2 1</span>
+        
+        <a href="javascript: var q;
+           if (window.getSelection){
+            q = window.getSelection().toString();
+           } else if (document.selection) {
+            q = document.selection.createRange().text;
+           }
+           void window.open('http://en.wikipedia.org/wiki/' + q);
+           ">Look up Selected Text in Wikipedia</a>
+        
+        <div id="divEditor" contenteditable>
+            Click to edit
+        </div>
+        
+        <iframe id="iframeEditor" src="about:blank"></iframe>
+        
         <script src="scripts/JavaScriptObjectExtensions/Object.js" type="text/javascript"></script>
         <script src="scripts/JavaScriptObjectExtensions/Array.js" type="text/javascript"></script>
         <script src="scripts/etc/clientSide/domPad.js" type="text/javascript"></script>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Uppercase Surname</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="">
+    </head>
+    <body>
+        <form>
+            <label for="surname">
+                SURNAME:
+                <input id="surname" type="text"
+                    oninput="this.value = this.value.toUpperCase();" />
+            </label>
+        </form>
+        <script src="scripts/helpers/whenReady.js" type="text/javascript"></script>
+        <script src="scripts/helpers/inputHelper.js" type="text/javascript"></script>
+        <script src="scripts/apps/uppercaseSurnameInput.js" type="text/javascript"></script>
+    </body>
+</html>
