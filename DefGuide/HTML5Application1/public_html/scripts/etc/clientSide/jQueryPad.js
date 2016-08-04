@@ -1,3 +1,5 @@
+/* global mesage */
+
 function handleClick() {
     alert('Do NOT click me!');
 }
@@ -10,11 +12,11 @@ function page(n) {
 }
 
 jQuery.noConflict();
-jQuery(function($) {
+jQuery(function ($) {
     'use strict';
     $('p.details').css('background-color', 'yellow').show('fast');
 
-    $('.clicktohide').click(function() {
+    $('.clicktohide').click(function () {
         $(this).slideUp('slow');
     });
 
@@ -31,18 +33,18 @@ jQuery(function($) {
     bodyScripts.jquery;
 
     var divs = $('div');
-    divs.each(function(index) {
+    divs.each(function (index) {
         $(this).prepend(index + ': ');
         if (this.id === 'last') {
             return false;
         }
     });
 
-    $(':header').map(function() {
+    $(':header').map(function () {
         return this.id;
     }).toArray().sort();
 
-    $('div').each(function() {
+    $('div').each(function () {
         if ($(this).is(':hidden')) {
             return;
         }
@@ -62,13 +64,13 @@ jQuery(function($) {
         padding: '10px 2px 4px 20px',
         border: 'dotted black 4px'
     });
-    $('h1').css('font-size', function(i, curval) {
+    $('h1').css('font-size', function (i, curval) {
         return Math.round(1.25 * parseInt(curval));
     });
     $('h1').addClass('hilite');
     $('h1+p').addClass('hilite first');
     $('h1').toggleClass('big bold');
-    $('h1').toggleClass(function(n) {
+    $('h1').toggleClass(function (n) {
         return 'big bold h1-' + n;
     });
     $('h1').toggleClass('hilite', true);
@@ -78,10 +80,10 @@ jQuery(function($) {
     $('p').removeClass('hilite first');
     $('p').hasClass('first');
 
-    $('section').addClass(function(n) {
+    $('section').addClass(function (n) {
         return 'section' + n;
     });
-    $('section').removeClass(function(n) {
+    $('section').removeClass(function (n) {
         return 'section' + n;
     });
 
@@ -96,13 +98,13 @@ jQuery(function($) {
     $('input:radio[name=ship]:checked').val();
     $('#email').val('Invalid email address');
     $('input:checkbox').val(['opt1', 'opt2']);
-    $('input:text').val(function() {
+    $('input:text').val(function () {
         return this.defaultValue;
     });
 
     var title = $('head title').text();
     var headline = $('h1').html();
-    $('h1').text(function(n, current) {
+    $('h1').text(function (n, current) {
         return '§' + (n + 1) + ': ' + current;
     });
 
@@ -111,7 +113,7 @@ jQuery(function($) {
     position.top += 100;
     element.offset(position);
 
-    $('h1').offset(function(index, currentPosition) {
+    $('h1').offset(function (index, currentPosition) {
         return {
             left: currentPosition.left + 25 * index,
             top: currentPosition.top
@@ -137,12 +139,12 @@ jQuery(function($) {
     $('h1').before('<hr/>');
     $('h1').after('<hr/>');
     $('hr').replaceWith('<br/>');
-    $('h2').each(function() {
+    $('h2').each(function () {
         var h2 = $(this);
         h2.replaceWith('<h1>' + h2.html() + '</h1>');
     });
-    $('h1').map(function() {
-        return this.firstChild
+    $('h1').map(function () {
+        return this.firstChild;
     }).before('§');
     $('<br/>');
 
@@ -160,7 +162,7 @@ jQuery(function($) {
     $('h1').wrapInner('<i/>');
     $('body>p:first').wrap('<a name=\'lead\'><div class=\'first\'></div></a>');
     $('body>p:not(:first)').wrapAll('<div class=\'rest\'></div>');
-    $('p').click(function() {
+    $('p').click(function () {
         $(this).css('background-color', 'gray');
     });
 
@@ -170,7 +172,7 @@ jQuery(function($) {
         src: url2,
         alt: imageDescription,
         className: 'translucentImage',
-        click: function() {
+        click: function () {
             $(this).css('opacity', '50%');
         }
     });
@@ -222,7 +224,7 @@ jQuery(function($) {
 
     $('button').trigger('click.ns1');
     $('button').trigger('click!');
-    $('button1').click(function(event){
+    $('button1').click(function (event) {
         $('#button2').trigger(event);
     });
 
@@ -231,21 +233,21 @@ jQuery(function($) {
         synthetic: true
     });
 
-    $('button1').click(function(event){
+    $('button1').click(function (event) {
         if (event.synthetic) {
             // ...
         }
     });
 
     $('button1').trigger('click', true);
-    $('button1').trigger('click', [x,y,z]);
+    $('button1').trigger('click', [x, y, z]);
 
-    $('#logoff').click(function(){
+    $('#logoff').click(function () {
         $.event.trigger('logoff');
         window.location = 'logoff.php';
     });
 
-    function linkHandler(){
+    function linkHandler() {
         alert('Unhand me, vile fiend!');
     }
     $(document).delegate('a', 'mouseover', linkHandler);
