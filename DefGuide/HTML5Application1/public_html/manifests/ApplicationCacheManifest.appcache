@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# ApplicationCacheManifest version 13
+
+CACHE:
+../ApplicationCacheManifest.html
+../scripts/apps/ApplicationCacheManifest.js
+../styles/ApplicationCacheManifest.css
+../images/background.png
+
+FALLBACK:
+../videos/ ../offline_help.html
+
+NETWORK:
+cgi/

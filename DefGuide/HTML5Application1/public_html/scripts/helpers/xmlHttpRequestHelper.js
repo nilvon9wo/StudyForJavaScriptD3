@@ -47,7 +47,7 @@ var xmlHttpRequestHelper = (function () {
             request.send(content);
         });
     }
-
+    
     function send(httpMethod, target, func) {
         var request = new XMLHttpRequest();
         request.open(httpMethod, target);

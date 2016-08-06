@@ -1,0 +1,13 @@
+CACHE MANIFEST
+# Permanote v13
+
+CACHE:
+../permanote.html
+../scripts/helpers/eventHelper.js
+../scripts/helpers/whenReady.js
+../scripts/apps/ApplicationCacheManifest.js
+../scripts/apps/permanote.js
+../styles/permanote.css
+
+NETWORK:
+note

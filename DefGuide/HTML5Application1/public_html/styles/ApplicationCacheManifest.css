@@ -1,0 +1,10 @@
+body {
+    background: url('../images/background.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+h1 {
+    color: darkblue;
+    font-family: sans-serif;
+    text-decoration: underline;
+}

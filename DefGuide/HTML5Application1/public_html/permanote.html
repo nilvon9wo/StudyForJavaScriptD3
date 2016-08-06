@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head manifest="manifests/permanote.appcache">
+        <title>PermaNote Editor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="">
+        <link href="styles/permanote.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div id="toolbak">
+            <button id="saveButton" onclick="save()">Save</button>
+            <button onclick="sync()">Sync Note</button>
+            <button onclick="applicationCache.update()">Update Application</button>
+        </div>
+        <textarea id="editor"></textarea>
+        <div id="statusLine"></div>
+        <script src="scripts/helpers/whenReady.js" type="text/javascript"></script>
+        <script src="scripts/helpers/eventHelper.js" type="text/javascript"></script>
+        <script src="scripts/apps/ApplicationCacheManifest.js" type="text/javascript"></script>
+        <script src="scripts/apps/permanote.js" type="text/javascript"></script>
+    </body>
+</html>
