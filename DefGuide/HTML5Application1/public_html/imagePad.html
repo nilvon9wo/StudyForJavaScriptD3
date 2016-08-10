@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Scripted Images</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="shortcut icon" href=""/>
+        <link href="styles/imagePad.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <img id="help" alt="help"
+             src="http://isl-images.net/Images/help.gif" 
+             data-rollover="https://www04.wellsfargomedia.com/assets/images/icons/personal/icon-gray-question-mark-40x39.png"
+             />
+        <audio id="music" controls>
+            <source src="media/Acoustic-guitar-motivational-music-josh-woodward-orbit-instrumental-version.mp3"
+                    type="audio/mpeg"/>
+            <source src="media/Epoq-Lepidoptera.ogg.crdownload"
+                    type="audio/ogg; codec='vorbis'"/>
+        </audio>
+        <video id="news" controls preload>
+            <source src="media/step.mov" />
+            <source src="media/big-buck-bunny_trailer.webm" type="video/webm">
+            <source src="media/SampleVideo_640x360_1mb.mp4" type="video/mp4">
+            <object type='application/x-shockwave-flash' data='media/962_fws.swf'>
+                <div>Video element not supported and Flash plugin not installed.</div>
+            </object>
+        </video>
+        <object id="sampleSvg" data="images/sample.svg" type="image/svg+xml"/>
+        
+        <script src="scripts/JavaScriptObjectExtensions/Object.js" type="text/javascript"></script>
+        <script src="scripts/helpers/eventHelper.js" type="text/javascript"></script>
+        <script src="scripts/helpers/whenReady.js" type="text/javascript"></script>
+        <script src="scripts/helpers/rollover.js" type="text/javascript"></script>
+        <script src="scripts/etc/clientSide/audioPad.js" type="text/javascript"></script>
+    </body>
+</html>
