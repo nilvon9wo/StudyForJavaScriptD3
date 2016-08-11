@@ -20,9 +20,14 @@ function Point(_x, _y){
             get: function() {
                 return Math.atan2(this.y, this.x); 
             }
+        },
+        commaSeparated: {
+            get: function() {
+                return this.x + ',' + this.y;
+            }
         }
     });
 }
 
-var point = new Point(1, 1);
+//var point = new Point(1, 1);
 
