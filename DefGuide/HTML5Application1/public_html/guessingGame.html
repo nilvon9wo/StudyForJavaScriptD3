@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>I"m thinking of a number</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href=""/>
+        <link href="styles/guessingGame.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <h1 id="heading">I"m thinking of a number...</h1>
+        <table>
+            <tr>
+                <td id="low"></td>
+                <td id="mid"></td>
+                <td id="high"></td>
+            </tr>
+        </table>
+        <label id="prompt" for="input"></label><input id="input" type="text"/>
+        <button id="playAgain">Play Again</button>
+        
+        <script src="scripts/JavaScriptObjectExtensions/Object.js" type="text/javascript"></script>
+        <script src="scripts/GuessingGame/State.js" type="text/javascript"></script>
+        <script src="scripts/GuessingGame/UI.js" type="text/javascript"></script>
+        <script src="scripts/GuessingGame/app.js" type="text/javascript"></script>
+    </body>
+</html>
