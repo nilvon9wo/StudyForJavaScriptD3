@@ -1,0 +1,8 @@
+.sparkLine{
+    background-color: #ddd;
+    color: red;
+}
+
+#bg, #peekhole {
+    display: none;
+}
