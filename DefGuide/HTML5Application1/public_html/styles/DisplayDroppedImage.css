@@ -1,0 +1,9 @@
+#dropTarget {
+    border: solid black 2px;
+    width: 200px;
+    height: 200px;
+}
+
+#dropTarget.active {
+    border: solid red 4px;
+}

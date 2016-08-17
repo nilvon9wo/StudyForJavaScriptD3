@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blob Reader</title>
+    <link rel="shortcut icon" href=""/>
+</head>
+<input>
+    Select the file to display:
+    <input type="file" onchange="Blob.read(this.files[0])"/>
+    <input type="file" onchange="Blob.typefile(this.files[0])"/>
+    <pre id="output"></pre>
+    <script src="scripts/JavaScriptObjectExtensions/Blob.js"></script>
+</body>
+</html>
