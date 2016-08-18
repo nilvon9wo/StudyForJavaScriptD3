@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zipcode Database</title>
+    <link rel="shortcut icon" href="" />
+    <link rel="stylesheet" href="styles/USPostalCodes.css"/>
+</head>
+<body>
+    <div>
+        <p>Enter a zip code to find its city: </p>
+        <label for="zipcode_input">Zipcode: <input id="zipcode_input" onchange="displayCity(this.value)"/></label>
+        City: <output id="city"></output>
+    </div>
+    <div>
+        <p>Enter a city name (case sensitive, without state) to find cities and their zipcodes:</p>
+        <label for="city_input">City: <input id="city_input" onchange="displayZipcodes(this.value)"/></label>
+        <div id="zipcodes"></div>
+    </div>
+
+    <p><i>This example is only known to work in Firefox 4 and Chrome 11.</i></p>
+    <p><i>Your first query may take a very long time to complete.</i></p>
+    <p><i>You may need to start Chrome with --unlimited-quota-for-indexeddb</i></p>
+    <script src="scripts/JavaScriptObjectExtensions/Object.js"></script>
+    <script src="scripts/apps/USPostalCodes.js"></script>
+</body>
+</html>

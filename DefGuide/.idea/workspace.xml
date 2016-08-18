@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a37c9371-bee7-452d-9405-cdf03a22dacc" name="Default" comment="" />
+    <list default="true" id="a37c9371-bee7-452d-9405-cdf03a22dacc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HTML5Application1/public_html/USPostalCodes.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HTML5Application1/public_html/scripts/apps/USPostalCodes.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/syncFileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HTML5Application1/public_html/styles/USPostalCodes.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/clientSide/asyncFileSystemExample.js" afterPath="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/asyncFileSystem.js" />
+    </list>
     <ignored path="DefGuide.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,31 +36,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Blob.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/JavaScriptObjectExtensions/Blob.js">
+      <file leaf-file-name="USPostalCodes.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/apps/USPostalCodes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="36" column="13" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="13" />
+            <state relative-caret-position="586">
+              <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlobReader.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/BlobReader.html">
+      <file leaf-file-name="zipcode.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/data/zipcode.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fileSystemPad.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/clientSide/fileSystemPad.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+            <state relative-caret-position="4340">
+              <caret line="43174" column="41" selection-start-line="43174" selection-start-column="41" selection-end-line="43174" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -64,9 +61,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -81,16 +78,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/objects/geometry/Point.js" />
-        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/generators/serialNumbers.js" />
-        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/generators/randomNumbers.js" />
-        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/scratchPad5.js" />
-        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/multidimensionalArray.js" />
-        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/arrayLike.js" />
-        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/arrayHelper.js" />
-        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/scratchPad6.js" />
-        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/generators/uniqueIntegers.js" />
-        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/counter.js" />
         <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/stacktraceHelper.js" />
         <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/math.js" />
         <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/functionHelper.js" />
@@ -132,6 +119,16 @@
         <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/JavaScriptObjectExtensions/Blob.js" />
         <option value="$PROJECT_DIR$/HTML5Application1/public_html/BlobReader.html" />
         <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/clientSide/fileSystemPad.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/clientSide/asyncFileSystemExample.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/clientSide/syncFileSystem.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/asyncFileSystem.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/syncFileSystem.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/USPostal;Codes.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/styles/USPostalCodes.css" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/apps/USPostal;Codes.js" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/USPostalCodes.html" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/data/zipcode.csv" />
+        <option value="$PROJECT_DIR$/HTML5Application1/public_html/scripts/apps/USPostalCodes.js" />
       </list>
     </option>
   </component>
@@ -343,7 +340,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="etc" />
+              <option name="myItemId" value="apps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -365,37 +362,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clientSide" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DefGuide" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DefGuide" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".idea" />
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -418,21 +393,18 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Tutorials\D2toD3\DefGuide\src\scripts\helpers" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Tutorials\D2toD3\StudyForJavaScriptD3\DefGuide\HTML5Application1\public_html\scripts\apps" />
-      <recent name="E:\Tutorials\D2toD3\StudyForJavaScriptD3\DefGuide\HTML5Application1\public_html\scripts\objects\geometry" />
       <recent name="E:\Tutorials\D2toD3\StudyForJavaScriptD3\DefGuide\HTML5Application1\public_html\scripts\helpers" />
+      <recent name="E:\Tutorials\D2toD3\StudyForJavaScriptD3\DefGuide\HTML5Application1\public_html\scripts\objects\geometry" />
       <recent name="E:\Tutorials\D2toD3\DefGuide\src\scripts\helpers" />
       <recent name="E:\Tutorials\D2toD3\DefGuide\src\scripts\objects" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Tutorials\D2toD3\DefGuide\src\scripts\helpers" />
+    </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.BlobReader.html">
-    <configuration default="false" name="workerPad.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DefGuide/HTML5Application1/public_html/workerPad.html">
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JavaScript Debug.USPostalCodes.html">
     <configuration default="false" name="smearWorker.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DefGuide/HTML5Application1/public_html/smearWorker.html">
       <method />
     </configuration>
@@ -443,6 +415,9 @@
       <method />
     </configuration>
     <configuration default="false" name="BlobReader.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DefGuide/HTML5Application1/public_html/BlobReader.html">
+      <method />
+    </configuration>
+    <configuration default="false" name="USPostalCodes.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DefGuide/HTML5Application1/public_html/USPostalCodes.html">
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -814,19 +789,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.workerPad.html" />
-      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.smearWorker.html" />
-      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.FilesAsBlobs.html" />
-      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.DisplayDroppedImage.html" />
-      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.BlobReader.html" />
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.smearWorker.html" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.FilesAsBlobs.html" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.DisplayDroppedImage.html" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.BlobReader.html" />
+      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.USPostalCodes.html" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.BlobReader.html" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.DisplayDroppedImage.html" />
-        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.FilesAsBlobs.html" />
-        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.smearWorker.html" />
-        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.workerPad.html" />
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.USPostalCodes.html" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.BlobReader.html" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.DisplayDroppedImage.html" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.FilesAsBlobs.html" />
+        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.smearWorker.html" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -886,7 +861,9 @@
       <workItem from="1471287337237" duration="3751000" />
       <workItem from="1471330981012" duration="24000" />
       <workItem from="1471350730672" duration="67000" />
-      <workItem from="1471451173228" duration="6655000" />
+      <workItem from="1471451173228" duration="6737000" />
+      <workItem from="1471510913465" duration="25000" />
+      <workItem from="1471531085989" duration="15139000" />
     </task>
     <task id="LOCAL-00001" summary="jQuery basics.">
       <created>1470244039209</created>
@@ -899,11 +876,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100719000" />
+    <option name="totallyTimeSpent" value="115965000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -961,24 +938,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/multidimensionalArray.js" />
-    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/arrayLike.js" />
-    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/arrayHelper.js" />
-    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/scratchPad6.js" />
-    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/generators/uniqueIntegers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/counter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -1126,7 +1085,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" column="56" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1134,9 +1092,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3296">
           <caret line="206" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1144,7 +1099,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1152,7 +1106,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1160,7 +1113,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1168,7 +1120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="829">
           <caret line="171" column="6" selection-start-line="171" selection-start-column="6" selection-end-line="171" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1176,7 +1127,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1184,7 +1134,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="16" column="60" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1192,7 +1141,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1200,7 +1148,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="3" column="23" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1208,7 +1155,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1216,7 +1162,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
           <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1224,13 +1169,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/JavaScriptObjectExtensions/Blob.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
+        <state relative-caret-position="576">
           <caret line="36" column="13" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="13" />
           <folding />
         </state>
@@ -1246,8 +1190,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/etc/clientSide/fileSystemPad.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+        <state relative-caret-position="224">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/syncFileSystem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="637">
+          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/helpers/asyncFileSystem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="1" column="35" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="35" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/styles/USPostalCodes.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/USPostalCodes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/data/zipcode.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4340">
+          <caret line="43174" column="41" selection-start-line="43174" selection-start-column="41" selection-end-line="43174" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML5Application1/public_html/scripts/apps/USPostalCodes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
           <folding />
         </state>
       </provider>
