@@ -1,5 +1,7 @@
+/* global statusHelper, logHelper, databaseHelper */
+
 var DATABASE_NAME = 'postalCodes';
-var DATABASE_VERSION = 7;
+var DATABASE_VERSION = 28;
 
 var indexedDB = getDeprefixed('indexedDB');
 var IDBTransaction = getDeprefixed('IDBTransaction');
@@ -12,47 +14,16 @@ function getDeprefixed(methodName) {
             window['moz' + methodName];
 }
 
-function logError(error) {
+function withDatabase(onSuccess) {
     'use strict';
-    console.error('IndexedDB error: ' + error.code + ' : ' + error.message);
-}
-
-function withDatabase(func) {
-    'use strict';
-    var request = indexedDB.open(DATABASE_NAME, DATABASE_VERSION);
-    request.onerror = logError;
-    request.onsuccess = function() {
-        'use strict';
-        var database = request.result;
-        if (database.version === DATABASE_VERSION) {
-            func(request.result);
-        } else {
-            console.warn('Database is not ready yet.');
-        }
-    };
-    request.onupgradeneeded = function(event) {
-        initDatabase(event.target.result, func);
-    };
-}
-
-function createStatus(){
-    'use strict';
-    var statusLine = document.createElement('div');
-    statusLine.className = 'statusLine';
-    document.body.appendChild(statusLine);
-    display('Initializing zipcode database');
-    statusLine.display = display;
-    return statusLine;
-
-    function display(message) {
-        statusLine.innerHTML = message.toString();
-    }
-
+    databaseHelper.withDatabase(
+            DATABASE_NAME, DATABASE_VERSION, onSuccess, initDatabase
+            );
 }
 
 function initDatabase(database, func) {
     'use strict';
-    var statusLine = createStatus();
+    var statusLine = statusHelper.createStatus('Initializing zipcode database');
 
     try {
         database.deleteObjectStore(DATABASE_NAME);
@@ -128,7 +99,7 @@ function lookupCity(zip, callback) {
         var zipcodeStore = transaction.objectStore(DATABASE_NAME);
 
         var request = zipcodeStore.get(zip);
-        request.onerror = logError;
+        request.onerror = logHelper.logError;
         request.onsuccess = function() {
             var resultCity = request.result;
             if (resultCity) {
@@ -136,7 +107,7 @@ function lookupCity(zip, callback) {
             } else {
                 callback('Unknown zip code');
             }
-        }
+        };
     });
 }
 
@@ -146,9 +117,9 @@ function lookupZipcodes(city, callback) {
         var transaction = database.transaction([DATABASE_NAME], 'readonly', 0);
         var zipcodeStore = transaction.objectStore(DATABASE_NAME);
         var cityIndex = zipcodeStore.index('cities');
-        var range = new IDBKeyRange.only(cityIndex);
-        var request = index.openCursor(range);
-        request.onerror = logError;
+        var range = new IDBKeyRange.only(city);
+        var request = cityIndex.openCursor(range);
+        request.onerror = logHelper.logError;
         request.onsuccess = function() {
             var cursor = request.result;
             if (!cursor) {
@@ -157,7 +128,7 @@ function lookupZipcodes(city, callback) {
             var zipcode = cursor.value;
             callback(zipcode);
             cursor.continue();
-        }
+        };
     });
 }
 
