@@ -1,0 +1,10 @@
+#noteMain {
+    padding-top: 100px;
+}
+#noteTable {
+    display: none;
+}
+
+#noteForm {
+    display: none;
+}
