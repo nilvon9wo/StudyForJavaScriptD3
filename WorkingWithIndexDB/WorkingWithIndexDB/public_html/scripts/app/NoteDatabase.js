@@ -27,12 +27,35 @@ $(document).ready(function () {
             }),
             success: function (event) {
                 var database = event.target.result;
-                displayNotes(database);
+                updatePage({
+                    database: database
+                });
                 addGlobalClickEvents(database);
             }
         }
     });
 });
+
+function updatePage(config) {
+    var database = config.database;
+    if (database) {
+        displayNotes(database);
+        doCount(database);
+    }
+
+    var note = config.note;
+    $('#key').val(note ? note.id : '');
+    $('#title').val(note ? note.title : '');
+    $('#body').val(note ? note.body : '');
+
+    if (config.detailMethod) {
+        $('#noteDetail')[config.detailMethod]();
+    }
+
+    if (config.formMethod) {
+        $('#noteForm')[config.formMethod]();
+    }
+}
 
 function displayNotes(database) {
     var transaction = IndexedDB.monitorTransaction({
@@ -53,6 +76,19 @@ function displayNotes(database) {
             var content = Note.fromDatabaseCursor(cursor)
                     .toTableRow(getAnchorClickEvents(database));
             $('#noteTableBody').append(content);
+        }
+    });
+}
+
+function doCount(database) {
+    IndexedDB.doCount({
+        database: database,
+        store: DATABASE_STORE,
+        events: {
+            success: function (event) {
+                var size = event.target.result;
+                $('#sizeSpan').text('(' + size + ' Notes Total)');
+            }
         }
     });
 }
@@ -133,12 +169,11 @@ function getAnchorClickEvents(database) {
             key: noteId,
             events: {
                 success: function (event) {
-                    var note = new Note(event.target.result);
-                    $('#key').val(note.id);
-                    $('#title').val(note.title);
-                    $('#body').val(note.body);
-                    $('#noteDetail').hide();
-                    $('#noteForm').show();
+                    updatePage({
+                        note: new Note(event.target.result),
+                        detailMethod: 'hide',
+                        formMethod: 'show'
+                    });
                 }
             }
         });
@@ -152,11 +187,10 @@ function getAnchorClickEvents(database) {
 }
 
 function refreshTable(database) {
-    $('#title').val('');
-    $('#body').val('');
-    $('#key').val('');
-    displayNotes(database);
-    $('#noteDetail').hide();
-    $('#noteForm').hide();
+    updatePage({
+        database: database,
+        detailMethod: 'hide',
+        formMethod: 'hide'
+    });
 }
 

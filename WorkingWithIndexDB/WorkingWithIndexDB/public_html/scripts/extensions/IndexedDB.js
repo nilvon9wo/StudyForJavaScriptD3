@@ -146,6 +146,14 @@ var IndexedDB = (function () {
         addEvents(request, config);
     }
 
+    function doCount(config) {
+        if (!config || !config.store) {
+            throw new Error('readRecordByIndex is missing required properties');
+        }
+        var request = getTransactionStore(config).count();
+        addEvents(request, config);
+    }
+
     function withCursor(config) {
         if (!config || !config.store || !config.cursorCallback) {
             throw new Error('cursoredReadRecord is missing required properties');
@@ -212,6 +220,7 @@ var IndexedDB = (function () {
         deleteRecord: deleteRecord,
         readRecordByKey: readRecordByKey,
         readRecordByIndex: readRecordByIndex,
+        doCount: doCount,
         withCursor: withCursor
     };
 }());

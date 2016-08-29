@@ -18,7 +18,7 @@ Note.prototype.toTableRow = function (anchorClickEvents) {
     var titleTd = $('<td>'+ this.title + '</td>')
             .addClass('notetitle');
     
-    var updatedTd = $('<td>'+ this.body + '</td>');
+    var updatedTd = $('<td>'+ DateTime.format(this.updated) + '</td>');
     
     var actionsTd = $('<td></td>');
     
