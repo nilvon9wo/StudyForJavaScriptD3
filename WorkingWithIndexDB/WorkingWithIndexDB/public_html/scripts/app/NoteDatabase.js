@@ -2,7 +2,7 @@
 // See http://code.tutsplus.com/tutorials/working-with-indexeddb-part-2--net-35355
 
 var DATABASE_NAME = 'nettutorial_notes';
-var DATABASE_VERSION = 1;
+var DATABASE_VERSION = 6;
 var DATABASE = {
     name: DATABASE_NAME,
     version: DATABASE_VERSION
@@ -17,12 +17,16 @@ $(document).ready(function () {
         throw new error(message);
     }
 
-    var openRequest = IndexedDB.openRequest({
+    IndexedDB.openRequest({
         database: DATABASE,
         events: {
             upgradeneeded: IndexedDB.defaultUpgrade({
                 note: {
-                    keyDefinition: {keyPath: 'id', autoIncrement: true}
+                    keyDefinition: {keyPath: 'id', autoIncrement: true},
+                    indexes: [
+                        {propertyName: 'titleLowerCase', options: {unique: false}}
+                    ],
+                    forceRecreate: true
                 }
             }),
             success: function (event) {
@@ -31,6 +35,7 @@ $(document).ready(function () {
                     database: database
                 });
                 addGlobalClickEvents(database);
+                addFilter(database);
             }
         }
     });
@@ -39,7 +44,7 @@ $(document).ready(function () {
 function updatePage(config) {
     var database = config.database;
     if (database) {
-        displayNotes(database);
+        displayNotes(config);
         doCount(database);
     }
 
@@ -57,7 +62,10 @@ function updatePage(config) {
     }
 }
 
-function displayNotes(database) {
+function displayNotes(config) {
+    var database = config.database;
+    var filter = config.filter;
+
     var transaction = IndexedDB.monitorTransaction({
         database: database,
         store: DATABASE_STORE,
@@ -69,9 +77,20 @@ function displayNotes(database) {
         }
     });
     $('#noteTableBody').empty();
+    var range;
+    if (filter) {
+        range = {
+            lowerBound: filter,
+            upperBound: filter + '\uffff'
+        };
+    }
+    ;
+
     IndexedDB.withCursor({
         transaction: transaction,
         store: DATABASE_STORE,
+        range: range,
+        index: 'titleLowerCase',
         cursorCallback: function (cursor) {
             var content = Note.fromDatabaseCursor(cursor)
                     .toTableRow(getAnchorClickEvents(database));
@@ -123,9 +142,16 @@ function addGlobalClickEvents(database) {
     });
 }
 
+function addFilter(database) {
+    $('#filterField').on('keyup', function () {
+        var filter = $(this).val();
+        updatePage({database: database, filter: filter});
+    });
+}
+
 function addRowClickEvents(database) {
     $('#noteList').on('click', 'td', function () {
-        var noteId = $(this).parent().data('key');
+        var noteId = $(this).parent().data('id');
         IndexedDB.readRecordByKey({
             database: database,
             store: DATABASE_STORE,
@@ -147,7 +173,7 @@ function addRowClickEvents(database) {
 
 function getAnchorClickEvents(database) {
     function deleteNote() {
-        var noteId = $(this).parent().parent().data('key');
+        var noteId = $(this).parent().parent().data('id');
         IndexedDB.deleteRecord({
             database: database,
             store: DATABASE_STORE,
@@ -162,7 +188,7 @@ function getAnchorClickEvents(database) {
     deleteNote.buttonClass = 'danger';
 
     function editNote() {
-        var noteId = $(this).parent().parent().data('key');
+        var noteId = $(this).parent().parent().data('id');
         IndexedDB.readRecordByKey({
             database: database,
             store: DATABASE_STORE,

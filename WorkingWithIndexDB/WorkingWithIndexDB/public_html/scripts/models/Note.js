@@ -4,6 +4,7 @@ function Note(config) {
         this.id = config.id;
     }
     this.title = config.title;
+    this.titleLowerCase = this.title.toLowerCase();
     this.body = config.body;
     this.updated = config.updated || new Date();
 }
@@ -32,6 +33,7 @@ Note.prototype.toTableRow = function (anchorClickEvents) {
     }
 
     return $('<tr></tr>')
+            .attr({'data-id': this.id})
             .attr({'data-key': this.key})
             .append(titleTd)
             .append(updatedTd)

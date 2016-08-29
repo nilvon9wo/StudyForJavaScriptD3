@@ -44,20 +44,16 @@ var IndexedDB = (function () {
         var keyDefinition = config.keyDefinition;
         var indexes = config.indexes;
 
-        if (!database.objectStoreNames.contains(store)) {
-            var objectStore = database.createObjectStore(store, keyDefinition);
-            if (indexes) {
-                indexes.forEach(function (index) {
-                    var propertyName = index.propertyName;
-                    var indexName = index.indexName || propertyName;
-                    var options = index.options || {};
-                    objectStore.createIndex(indexName, propertyName, options);
-                });
-            }
-            return objectStore;
-        } else {
-            throw new Error('createStore cannot recreate existing store');
+        var objectStore = database.createObjectStore(store, keyDefinition);
+        if (indexes) {
+            indexes.forEach(function (index) {
+                var propertyName = index.propertyName;
+                var indexName = index.indexName || propertyName;
+                var options = index.options || {};
+                objectStore.createIndex(indexName, propertyName, options);
+            });
         }
+        return objectStore;
     }
 
     function defaultUpgrade(stores) {
@@ -67,6 +63,11 @@ var IndexedDB = (function () {
             var database = event.target.result;
 
             for (var store in stores) {
+                if (database.objectStoreNames.contains(store) && stores[store].forceRecreate) {
+                    database.deleteObjectStore(store);
+                }
+
+
                 upgradeStore(transaction, database, store);
             }
         };
@@ -160,7 +161,7 @@ var IndexedDB = (function () {
         }
 
         var store = getTransactionStore(config);
-        var source = ((config.index) ? store.index(config.index) : store);
+        var source = (config.index) ? store.index(config.index) : store;
         var range = getRange(config);
         var requestCursor = source.openCursor(range);
 
@@ -194,11 +195,10 @@ var IndexedDB = (function () {
             throw new Error('Range requires index');
         }
 
-        var lowerBound = config.range.lowerBound.trim();
-        var upperBound = config.range.upperBound.trim();
+        var lowerBound = config.range.lowerBound && config.range.lowerBound.trim();
+        var upperBound = config.range.upperBound && config.range.upperBound.trim();
 
         if (lowerBound && upperBound) {
-            console.log('BOTH');
             return IDBKeyRange.bound(lowerBound, upperBound);
         } else if (lowerBound) {
             return IDBKeyRange.lowerBound(lowerBound);
