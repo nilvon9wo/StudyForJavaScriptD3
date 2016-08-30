@@ -1,6 +1,6 @@
 /* global IndexedDB, indexedDB, Event, Log, IDBKeyRange */
 
-var IndexedDB = (function () {
+var IndexedDB = (function() {
 
     function monitorTransaction(config) {
         if (!config || !config.database || !config.store) {
@@ -46,7 +46,7 @@ var IndexedDB = (function () {
 
         var objectStore = database.createObjectStore(store, keyDefinition);
         if (indexes) {
-            indexes.forEach(function (index) {
+            indexes.forEach(function(index) {
                 var propertyName = index.propertyName;
                 var indexName = index.indexName || propertyName;
                 var options = index.options || {};
@@ -59,7 +59,7 @@ var IndexedDB = (function () {
     function defaultUpgrade(stores) {
         return function upgradeneeded(event) {
             var transaction = event.srcElement && event.srcElement.transaction ||
-                    event.originalTarget && event.originalTarget.transaction;
+                event.originalTarget && event.originalTarget.transaction;
             var database = event.target.result;
 
             for (var store in stores) {
@@ -133,14 +133,13 @@ var IndexedDB = (function () {
 
     function readRecordByIndex(config) {
         if (
-                !config || !config.store ||
-                !config.indexName || !config.indexValue
-                ) {
+            !config || !config.store || !config.indexName || !config.indexValue
+        ) {
             throw new Error('readRecordByIndex is missing required properties');
         }
 
         var request = getTransactionStore(config).index(config.indexName)
-                .get(config.indexValue);
+            .get(config.indexValue);
 
         config.events = config.events || {};
         config.events.success = config.events.success || config.callback;
@@ -165,7 +164,7 @@ var IndexedDB = (function () {
         var range = getRange(config);
         var requestCursor = source.openCursor(range);
 
-        Event.add(requestCursor, 'success', function (event) {
+        Event.add(requestCursor, 'success', function(event) {
             var cursor = event.target.result;
             if (cursor) {
                 config.cursorCallback(cursor);
@@ -178,25 +177,30 @@ var IndexedDB = (function () {
         if (!config || !(config.database || config.transaction)) {
             throw new Error('getTransactionStore is missing required properties');
         }
-        var transaction = config.transaction || (function () {
-            var transactionType = isWritable || config.isWritable ? 'readwrite' : 'readonly';
-            return config.database.transaction([config.store], transactionType);
-        }());
+        var transaction = config.transaction || (function() {
+                var transactionType = isWritable || config.isWritable ? 'readwrite' : 'readonly';
+                return config.database.transaction([config.store], transactionType);
+            }());
         addEvents(transaction, config, 'transaction');
         return transaction.objectStore(config.store);
     }
 
     function getRange(config) {
-        if (!config.range) {
+        var range = config.range;
+        if (!range) {
             return;
         }
 
-        if (config.range && !config.index) {
+        if (range && !config.index) {
             throw new Error('Range requires index');
         }
 
-        var lowerBound = config.range.lowerBound && config.range.lowerBound.trim();
-        var upperBound = config.range.upperBound && config.range.upperBound.trim();
+        if (range.only) {
+            return IDBKeyRange.only(range.only);
+        }
+
+        var lowerBound = range.lowerBound && range.lowerBound.trim();
+        var upperBound = range.upperBound && range.upperBound.trim();
 
         if (lowerBound && upperBound) {
             return IDBKeyRange.bound(lowerBound, upperBound);
