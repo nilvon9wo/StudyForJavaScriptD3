@@ -2,7 +2,7 @@
 // See http://code.tutsplus.com/tutorials/working-with-indexeddb-part-2--net-35355
 
 var DATABASE_NAME = 'nettutorial_notes';
-var DATABASE_VERSION = 6;
+var DATABASE_VERSION = 7;
 var DATABASE = {
     name: DATABASE_NAME,
     version: DATABASE_VERSION
@@ -24,7 +24,8 @@ $(document).ready(function () {
                 note: {
                     keyDefinition: {keyPath: 'id', autoIncrement: true},
                     indexes: [
-                        {propertyName: 'titleLowerCase', options: {unique: false}}
+                        {propertyName: 'titleLowerCase', options: {unique: false}},
+                        {propertyName: 'tags', options: {unique: false, multiEntry: true}}
                     ],
                     forceRecreate: true
                 }
@@ -44,7 +45,7 @@ $(document).ready(function () {
 function updatePage(config) {
     var database = config.database;
     if (database) {
-        displayNotes(config);
+        displayNotes(database);
         doCount(database);
     }
 
@@ -52,6 +53,7 @@ function updatePage(config) {
     $('#key').val(note ? note.id : '');
     $('#title').val(note ? note.title : '');
     $('#body').val(note ? note.body : '');
+    $('#tags').val(note ? note.tags : '');
 
     if (config.detailMethod) {
         $('#noteDetail')[config.detailMethod]();
@@ -62,10 +64,7 @@ function updatePage(config) {
     }
 }
 
-function displayNotes(config) {
-    var database = config.database;
-    var filter = config.filter;
-
+function displayNotes(database) {
     var transaction = IndexedDB.monitorTransaction({
         database: database,
         store: DATABASE_STORE,
@@ -77,8 +76,10 @@ function displayNotes(config) {
         }
     });
     $('#noteTableBody').empty();
+
     var range;
-    if (filter) {
+    var filter = $('#filterField').val();
+    if (filter.trim()) {
         range = {
             lowerBound: filter,
             upperBound: filter + '\uffff'
@@ -114,11 +115,10 @@ function doCount(database) {
 
 function addGlobalClickEvents(database) {
     $('#addNoteButton').on('click', function () {
-        $('#title').val('');
-        $('#body').val('');
-        $('#key').val('');
-        $('#noteDetail').hide();
-        $('#noteForm').show();
+        updatePage({
+            detailMethod: 'hide',
+            formMethod: 'show'
+        });
     });
 
     $('#saveNoteButton').on('click', function () {
@@ -126,7 +126,8 @@ function addGlobalClickEvents(database) {
         var note = new Note({
             id: (keyVal.trim() !== '') ? Number(keyVal) : undefined,
             title: $('#title').val(),
-            body: $('#body').val()
+            body: $('#body').val(),
+            tags: $('#tags').val()
         });
         var method = ((note.id) ? 'put' : 'add') + 'Record';
         IndexedDB[method]({
@@ -135,7 +136,12 @@ function addGlobalClickEvents(database) {
             record: note,
             transactionEvents: {
                 complete: function () {
-                    refreshTable(database);
+                    updatePage({
+                        database: database,
+                        detailMethod: 'hide',
+                        formMethod: 'hide'
+                    });
+
                 }
             }
         });
@@ -144,26 +150,24 @@ function addGlobalClickEvents(database) {
 
 function addFilter(database) {
     $('#filterField').on('keyup', function () {
-        var filter = $(this).val();
-        updatePage({database: database, filter: filter});
+        updatePage({database: database});
     });
 }
 
 function addRowClickEvents(database) {
     $('#noteList').on('click', 'td', function () {
         var noteId = $(this).parent().data('id');
+        console.log('click', noteId);
         IndexedDB.readRecordByKey({
             database: database,
             store: DATABASE_STORE,
             key: noteId,
             events: {
                 success: function (event) {
+                    console.log('success', event);
                     var result = event.target.result;
                     if (result) {
-                        var note = new Note(event.target.result);
-                        var title = DOMElement.createElement('h2', {}, note.title);
-                        var body = DOMElement.createElement('p', {}, note.body);
-                        $('#noteDetail').html(title + body).show;
+                        new Note(result).display();
                     }
                 }
             }
@@ -180,7 +184,12 @@ function getAnchorClickEvents(database) {
             key: noteId,
             transactionEvents: {
                 complete: function () {
-                    refreshTable(database);
+                    updatePage({
+                        database: database,
+                        detailMethod: 'hide',
+                        formMethod: 'hide'
+                    });
+                    ;
                 }
             }
         });
@@ -211,12 +220,3 @@ function getAnchorClickEvents(database) {
         'delete': deleteNote
     };
 }
-
-function refreshTable(database) {
-    updatePage({
-        database: database,
-        detailMethod: 'hide',
-        formMethod: 'hide'
-    });
-}
-

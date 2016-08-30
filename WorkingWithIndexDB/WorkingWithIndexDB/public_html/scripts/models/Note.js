@@ -6,6 +6,11 @@ function Note(config) {
     this.title = config.title;
     this.titleLowerCase = this.title.toLowerCase();
     this.body = config.body;
+
+    if (config.tags){
+        this.tags = (config.tags.isArray()) ? config.tags : config.tags.split(',');
+    }
+    
     this.updated = config.updated || new Date();
 }
 
@@ -15,21 +20,56 @@ Note.fromDatabaseCursor = function (cursor) {
     return note;
 };
 
+Note.prototype.display = function () {
+    var self = this;
+    var tagContent = $('<div></div>');
+    if (this.tags && this.tags.length > 0) {
+        var tagList = $('<ol></ol>').addClass('tags');
+        this.tags.forEach(function (tag) {
+            var tagItem = $('<li></li>')
+                .addClass('tag');
+            
+            var tagAnchor = $('<a>' + tag + '</a>')
+                    .addClass('tagLookup')
+                    .attr('title', 'Click for Related Notes')
+                    .data('noteid', self.id);
+            
+            tagItem.append(tagAnchor);
+            tagList.append(tagItem);
+        });
+
+        var relatedContent = $('<div></div>')
+                .attr('id', 'relatedNotesDisplay');
+
+        tagContent
+                .append($('<strong>Tags:</strong>'))
+                .append(tagList)
+                .append($('<br/>'))
+                .append(relatedContent);
+    }
+
+    $('#noteDetail').empty()
+            .append($('<h2>' + this.title + '</h2>'))
+            .append(tagContent)
+            .append($('<p>' + this.body + '</p>'))
+            .show();
+};
+
 Note.prototype.toTableRow = function (anchorClickEvents) {
-    var titleTd = $('<td>'+ this.title + '</td>')
+    var titleTd = $('<td>' + this.title + '</td>')
             .addClass('notetitle');
-    
-    var updatedTd = $('<td>'+ DateTime.format(this.updated) + '</td>');
-    
+
+    var updatedTd = $('<td>' + DateTime.format(this.updated) + '</td>');
+
     var actionsTd = $('<td></td>');
-    
-    for (var key in anchorClickEvents){
+
+    for (var key in anchorClickEvents) {
         var buttonLabel = key.charAt(0).toUpperCase() + key.slice(1);
         var buttonClass = anchorClickEvents[key].buttonClass;
         var anchor = $('<a>' + buttonLabel + '</a>')
-            .addClass('btn btn-' + buttonClass + ' ' + key)
-            .on('click', anchorClickEvents[key]);
-            actionsTd.append(anchor);
+                .addClass('btn btn-' + buttonClass + ' ' + key)
+                .on('click', anchorClickEvents[key]);
+        actionsTd.append(anchor);
     }
 
     return $('<tr></tr>')
@@ -37,6 +77,6 @@ Note.prototype.toTableRow = function (anchorClickEvents) {
             .attr({'data-key': this.key})
             .append(titleTd)
             .append(updatedTd)
-            .append(actionsTd);    
+            .append(actionsTd);
 };
 
