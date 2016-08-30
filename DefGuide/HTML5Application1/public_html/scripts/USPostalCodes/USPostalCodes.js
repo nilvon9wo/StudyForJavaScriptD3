@@ -1,94 +1,88 @@
-/* global statusHelper, logHelper, databaseHelper, cities */
+/* global statusHelper, logHelper, IndexedDB, cities, Event */
 
 var DATABASE_NAME = 'postalCodes';
-var DATABASE_STORE = 'zipcodes';
-var DATABASE_VERSION = 45;
-
-window.indexedDB = getDeprefixed('indexedDB');
-window.IDBTransaction = getDeprefixed('IDBTransaction') || {READ_WRITE: 'readwrite'};
-window.IDBKeyRange = getDeprefixed('IDBKeyRange');
-
-function getDeprefixed(methodName) {
-    'use strict';
-    var upperMethodName = methodName.charAt(0).toUpperCase() + methodName.slice(1);
-    return window[methodName] ||
-            window['webkit' + upperMethodName] ||
-            window['moz' + upperMethodName] ||
-            window['ms' + upperMethodName];
-}
+var DATABASE_STORE = 'locations';
+var DATABASE_VERSION = 53;
 
 function withPostalCodeDatabase(onSuccess) {
     'use strict';
-    databaseHelper.withDatabase(
-            DATABASE_NAME, DATABASE_VERSION, onSuccess, initDatabase
-            );
+    IndexedDB.withDatabase({
+        database: {
+            name: DATABASE_NAME,
+            version: DATABASE_VERSION
+        },
+        events: {
+            success: function(event){
+                var database = event.target.result;
+                onSuccess(database, event);
+            },
+            upgradeneeded: IndexedDB.defaultDatabaseUpgrade({
+                stores: {
+                    locations: {
+                        keyDefinition: {keyPath: 'zipcode', autoIncrement: true},
+                        indexes: [
+                            {propertyName: 'city', indexName: 'cities', options: {unique: false}}
+                        ],
+                        forceRecreate: true
+                    }
+                },
+                data: {
+                    locations: insertZipcodes
+                }
+            })
+        }
+    });
 }
 
-function initDatabase(database, transaction) {
+function insertZipcodes(zipcodeStore) {
     'use strict';
+    console.log('INSERTING', zipcodeStore);
     var statusLine = statusHelper.createStatus('Initializing zipcode database');
 
-    if (!database.objectStoreNames.contains(DATABASE_STORE)) {
-        var zipcodeStore = database.createObjectStore(DATABASE_STORE, {
-            keypath: 'zipcode',
-            autoIncrement: false
-        });
-        zipcodeStore.createIndex('cities', 'city');
-    }
+    var xhr = new XMLHttpRequest();
+    Event.add(xhr, 'error', status.display);
+    Event.add(xhr, 'progress', handleDataChunk);
+    Event.add(xhr, 'load', handleDataChunk);
+    xhr.open('GET', 'data/free-zipcode-database.csv');
+    xhr.send();
 
-    var zipcodeStore = transaction.objectStore(DATABASE_STORE);
+    var lastCharacter = 0;
+    var numberOfLines = 0;
 
-    requestZipCodes();
+    function handleDataChunk(event) {
+    console.log('HANDLING', event);
+        var responseText = event.target.responseText;
+        var lastNewLine = responseText.lastIndexOf('\n');
+        if (lastNewLine > lastCharacter) {
+            var chunk = responseText.substring(lastCharacter, lastNewLine);
+            lastCharacter = lastNewLine + 1;
 
-    function requestZipCodes() {
-        var xhr = new XMLHttpRequest();
-        xhr.onerror = status.display;
-        xhr.onprogress = handleDataChunk;
-        xhr.onload = handleDataChunk;
-        xhr.open('GET', 'data/zipcode.csv');
-        xhr.send();
+            var lines = chunk.split('\n');
+            numberOfLines += lines.length;
+            storeZipcodes(lines);
+            status.display('Initializing zipcode database: loaded ' + numberOfLines + ' records.');
+        }
 
-        var lastCharacter = 0;
-        var numberOfLines = 0;
+        if (event.type === 'load') {
+            cities.lookup('02134', function () {
+                document.body.removeChild(statusLine);
+            });
+        }
 
-        function handleDataChunk(event) {
-            var responseText = event.target.responseText;
-            console.log('responseText', responseText);
-            var lastNewLine = responseText.lastIndexOf('\n');
-            if (lastNewLine > lastCharacter) {
-                var chunk = responseText.substring(lastCharacter, lastNewLine);
-                lastCharacter = lastNewLine + 1;
-
-                var lines = chunk.split('\n');
-                numberOfLines += lines.length;
-                storeZipcodes(lines);
-                status.display('Initializing zipcode database: loaded ' + numberOfLines + ' records.');
-            }
-
-            if (event.type === 'load') {
-                cities.lookup('02134', function () {
-                    document.body.removeChild(statusLine);
-//                    withPostalCodeDatabase(func);
+        function storeZipcodes(lines) {
+            console.log('STORING', lines);
+            lines.toArray().forEach(function (line) {
+                var fields = line.split(',');
+                console.log('$$$ putting', fields);
+                zipcodeStore.put({
+                    zipcode: fields[0],
+                    city: fields[1],
+                    state: fields[2],
+                    latitude: fields[3],
+                    longitude: fields[4]
                 });
-            }
-
-            function storeZipcodes(lines) {
-                lines.toArray().forEach(function (line) {
-                    console.log('line', line);
-                    var fields = line.split(',');
-                    zipcodeStore.put({
-                        zipcode: fields[0],
-                        city: fields[1],
-                        state: fields[2],
-                        latitude: fields[3],
-                        longitude: fields[4]
-                    });
-                });
-            }
+            });
         }
     }
 }
 
-function deleteDatabase() {
-    databaseHelper.deleteDatabase(DATABASE_NAME);
-}
