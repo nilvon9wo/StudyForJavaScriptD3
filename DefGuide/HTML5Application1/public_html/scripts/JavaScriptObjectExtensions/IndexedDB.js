@@ -1,9 +1,9 @@
 /* global IndexedDB, indexedDB, Event, Log, IDBKeyRange */
 
 var IndexedDB = (function() {
-    
+
     // Windows ---------------------------------------------------------------------------
-    
+
     window.indexedDB = getDeprefixed('indexedDB');
     window.IDBTransaction = getDeprefixed('IDBTransaction') || {READ_WRITE: 'readwrite'};
     window.IDBKeyRange = getDeprefixed('IDBKeyRange');
@@ -12,13 +12,13 @@ var IndexedDB = (function() {
         'use strict';
         var upperMethodName = methodName.charAt(0).toUpperCase() + methodName.slice(1);
         return window[methodName] ||
-                window['webkit' + upperMethodName] ||
-                window['moz' + upperMethodName] ||
-                window['ms' + upperMethodName];
+            window['webkit' + upperMethodName] ||
+            window['moz' + upperMethodName] ||
+            window['ms' + upperMethodName];
     }
-    
+
     // Database ---------------------------------------------------------------------------
-    
+
     function withDatabase(config) {
         console.log('withDatabase', config);
         if (!config || !config.database.name || !config.database.version) {
@@ -30,12 +30,10 @@ var IndexedDB = (function() {
         return openRequest;
     }
 
-    function defaultDatabaseUpgrade(config) {
-        var stores = config.stores;
-        var data = config.data;
-        
-        return function upgradeneeded(event) {
-            console.log('upgradeneeded',event);
+    function defaultDatabaseUpgrade(stores) {
+        'use strict';
+
+        return function (event) {
             var transaction = event.srcElement && event.srcElement.transaction ||
                 event.originalTarget && event.originalTarget.transaction;
             var database = event.target.result;
@@ -44,25 +42,11 @@ var IndexedDB = (function() {
                 if (database.objectStoreNames.contains(storeName) && stores[storeName].forceRecreate) {
                     database.deleteObjectStore(storeName);
                 }
-
                 upgradeStore(transaction, database, storeName);
-            }
-            
-            console.log('$$$ .. data', data);
-            if (data) {
-                for (var store in data) {
-                    if (typeof data[store] === 'function') {
-                        console.log('$$$$ another approach... data[store]', data[store]);
-                        data[store](getTransactionStore({database:database}), true);
-                    } else {
-                        // TODO 
-                    }
-                }
             }
         };
 
         function upgradeStore(transaction, database, storeName) {
-            console.log('upgradeStore',transaction, database, storeName);
             IndexedDB.createStore({
                 database: database,
                 store: storeName,
@@ -70,18 +54,36 @@ var IndexedDB = (function() {
                 indexes: stores[storeName].indexes
             });
         }
-
-        function addRecords(transactionStore, records) {
-            console.log('addRecords', transactionStore, records);
-            for (var recordKey in records) {
-                transactionStore.add(records[recordKey], recordKey);
-            }
-        }
     }
 
-    function deleteDatabase (databaseName) {
+    function initializeDatabase(stores) {
+        'use strict';
+        return function(event) {
+            console.log('#### event', event);
+            console.log('#### event.database', event.database);
+            for (var storeName in stores) {
+                var storeContents = stores[storeName];
+                var transactionStore = getTransactionStore({
+                    database: event.database,
+                    store: storeName,
+                    isWritable: true
+                });
+                console.log('transactionStore', transactionStore);
+                if (typeof storeContents === 'function') {
+                    storeContents(transactionStore);
+                } else {
+                    for (var recordKey in storeContents) {
+                        //transactionStore.add(currentStore[recordKey], recordKey);
+                    }
+                }
+            }
+        };
+    }
+
+    function deleteDatabase(databaseName) {
+        'use strict';
         var request = window.indexedDB.deleteDatabase(databaseName);
-        request.onSuccess = function () {
+        request.onSuccess = function() {
             alert('deleted');
         };
     }
@@ -121,12 +123,13 @@ var IndexedDB = (function() {
         return objectStore;
     }
 
-    function getTransactionStore(config, isWritable) {
+    function getTransactionStore(config) {
+        console.log('gts config', config);
         if (!config || !(config.database || config.transaction)) {
             throw new Error('getTransactionStore is missing required properties');
         }
         var transaction = config.transaction || (function() {
-                var transactionType = isWritable || config.isWritable ? 'readwrite' : 'readonly';
+                var transactionType = config.isWritable ? 'readwrite' : 'readonly';
                 return config.database.transaction([config.store], transactionType);
             }());
         addEvents(transaction, config, 'transaction');
@@ -256,7 +259,11 @@ var IndexedDB = (function() {
 
         if (config[eventSetName]) {
             for (var key in config[eventSetName]) {
-                Event.add(target, key, config[eventSetName][key]);
+                var eventName = key;
+                if (eventName === 'upgradeSuccess') {
+                    eventName = 'success';
+                }
+                Event.add(target, eventName, config[eventSetName][key]);
             }
         }
     }
@@ -266,9 +273,10 @@ var IndexedDB = (function() {
         // Database
         isSupported: 'indexedDB' in window,
         defaultDatabaseUpgrade: defaultDatabaseUpgrade,
+        initializeDatabase: initializeDatabase,
         deleteDatabase: deleteDatabase,
         withDatabase: withDatabase,
-        
+
         // Transaction
         monitorTransaction: monitorTransaction,
 
