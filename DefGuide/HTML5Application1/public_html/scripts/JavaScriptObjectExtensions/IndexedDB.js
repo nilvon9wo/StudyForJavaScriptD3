@@ -1,6 +1,7 @@
 /* global IndexedDB, indexedDB, Event, Log, IDBKeyRange */
 
 var IndexedDB = (function() {
+    var VERSION_CONTROL = 'META_VERSION_CONTROL';
 
     // Windows ---------------------------------------------------------------------------
 
@@ -20,7 +21,6 @@ var IndexedDB = (function() {
     // Database ---------------------------------------------------------------------------
 
     function withDatabase(config) {
-        console.log('withDatabase', config);
         if (!config || !config.database.name || !config.database.version) {
             throw new Error('openRequest is missing required properties');
         }
@@ -33,7 +33,7 @@ var IndexedDB = (function() {
     function defaultDatabaseUpgrade(stores) {
         'use strict';
 
-        return function (event) {
+        return function(event) {
             var transaction = event.srcElement && event.srcElement.transaction ||
                 event.originalTarget && event.originalTarget.transaction;
             var database = event.target.result;
@@ -58,24 +58,46 @@ var IndexedDB = (function() {
 
     function initializeDatabase(stores) {
         'use strict';
+        var versions = {};
+
         return function(event) {
-            console.log('#### event', event);
-            console.log('#### event.database', event.database);
-            for (var storeName in stores) {
-                var storeContents = stores[storeName];
-                var transactionStore = getTransactionStore({
-                    database: event.database,
-                    store: storeName,
-                    isWritable: true
-                });
-                console.log('transactionStore', transactionStore);
-                if (typeof storeContents === 'function') {
-                    storeContents(transactionStore);
-                } else {
-                    for (var recordKey in storeContents) {
-                        //transactionStore.add(currentStore[recordKey], recordKey);
+            var database = event.target.result;
+            withCursor({
+                database: database,
+                store: VERSION_CONTROL,
+                key: 'storeName',
+                isWritable: true,
+                cursorCallback: function(cursor) {
+                    versions[cursor.value.storeName] = cursor.value.version;
+                },
+                cursorlessCallback: function() {
+                    updateMetadata(VERSION_CONTROL, 1);
+                    alert('Please refresh the page and try again');
+                },
+                afterLastCursor: function() {
+                    for (var store in stores) {
+                        if (!versions[store] || versions[store] < store.latestVersion) {
+                            stores[store].initialize(getTransactionStore({
+                                database:database,
+                                store: store,
+                                isWritable: true
+                            }));
+                            updateMetadata(store, stores[store].latestVersion);
+                        }
                     }
                 }
+            });
+
+            function updateMetadata(store, version){
+                putRecord({
+                    database: database,
+                    store: 'META_VERSION_CONTROL',
+                    record: {
+                        storeName: store,
+                        version: version,
+                        createDate: new Date()
+                    }
+                });
             }
         };
     }
@@ -124,7 +146,6 @@ var IndexedDB = (function() {
     }
 
     function getTransactionStore(config) {
-        console.log('gts config', config);
         if (!config || !(config.database || config.transaction)) {
             throw new Error('getTransactionStore is missing required properties');
         }
@@ -173,7 +194,8 @@ var IndexedDB = (function() {
             throw new Error('addRecord is missing required properties');
         }
 
-        var request = getTransactionStore(config, true).add(config.record, config.key);
+        config.isWritable = true;
+        var request = getTransactionStore(config).add(config.record, config.key);
         addEvents(request, config);
     }
 
@@ -182,7 +204,8 @@ var IndexedDB = (function() {
             throw new Error('addRecord is missing required properties');
         }
 
-        var request = getTransactionStore(config, true).put(config.record);
+        config.isWritable = true;
+        var request = getTransactionStore(config).put(config.record);
         addEvents(request, config);
     }
 
@@ -240,11 +263,21 @@ var IndexedDB = (function() {
         var range = getRange(config);
         var requestCursor = source.openCursor(range);
 
+        var atLeastOnce = false;
         Event.add(requestCursor, 'success', function(event) {
             var cursor = event.target.result;
             if (cursor) {
                 config.cursorCallback(cursor);
                 cursor.continue();
+                atLeastOnce = true;
+            } else {
+                if (config.afterLastCursor) {
+                    config.afterLastCursor();
+                }
+            }
+
+            if (!atLeastOnce && config.cursorlessCallback) {
+                config.cursorlessCallback();
             }
         });
     }
@@ -271,6 +304,7 @@ var IndexedDB = (function() {
 
     return {
         // Database
+        VERSION_CONTROL: VERSION_CONTROL,
         isSupported: 'indexedDB' in window,
         defaultDatabaseUpgrade: defaultDatabaseUpgrade,
         initializeDatabase: initializeDatabase,

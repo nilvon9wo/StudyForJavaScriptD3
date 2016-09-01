@@ -1,19 +1,18 @@
 /* global statusHelper, logHelper, IndexedDB, cities, Event */
 
-var DATABASE_NAME = 'postalCodes';
-var DATABASE_VERSION = 60;
-var DATABASE_STORE = 'locations';
+var DATABASE = {NAME: 'postalCodes', VERSION: 63};
+var LOCATIONS = {STORENAME: 'locations', VERSION: 4};
 
 function withPostalCodeDatabase(onSuccess) {
     'use strict';
     IndexedDB.withDatabase({
         database: {
-            name: DATABASE_NAME,
-            version: DATABASE_VERSION
+            name: DATABASE.NAME,
+            version: DATABASE.VERSION
         },
         events: {
             upgradeneeded: IndexedDB.defaultDatabaseUpgrade({
-                meta: {
+                META_VERSION_CONTROL: {
                     keyDefinition: {keyPath: 'storeName', autoIncrement: true}
                 },
                 locations: {
@@ -25,7 +24,10 @@ function withPostalCodeDatabase(onSuccess) {
                 }
             }),
             upgradeSuccess: IndexedDB.initializeDatabase({
-                locations: insertZipcodes
+                locations: {
+                    latestVersion: LOCATIONS.VERSION,
+                    initialize: insertZipcodes
+                }
             }),
             success: function(event) {
                 var database = event.target.result;
@@ -37,21 +39,19 @@ function withPostalCodeDatabase(onSuccess) {
 
 function insertZipcodes(zipcodeStore) {
     'use strict';
-    console.log('INSERTING', zipcodeStore);
     var statusLine = statusHelper.createStatus('Initializing zipcode database');
 
     var xhr = new XMLHttpRequest();
     Event.add(xhr, 'error', status.display);
     Event.add(xhr, 'progress', handleDataChunk);
     Event.add(xhr, 'load', handleDataChunk);
-    xhr.open('GET', 'data/free-zipcode-database.csv');
+    xhr.open('GET', 'data/zipcode.csv');
     xhr.send();
 
     var lastCharacter = 0;
     var numberOfLines = 0;
 
     function handleDataChunk(event) {
-        console.log('HANDLING', event);
         var responseText = event.target.responseText;
         var lastNewLine = responseText.lastIndexOf('\n');
         if (lastNewLine > lastCharacter) {
@@ -71,10 +71,8 @@ function insertZipcodes(zipcodeStore) {
         }
 
         function storeZipcodes(lines) {
-            console.log('STORING', lines);
             lines.toArray().forEach(function(line) {
                 var fields = line.split(',');
-                console.log('$$$ putting', fields);
                 zipcodeStore.put({
                     zipcode: fields[0],
                     city: fields[1],
@@ -89,5 +87,5 @@ function insertZipcodes(zipcodeStore) {
 
 function deleteDatabase() {
     'use strict';
-    IndexedDB.deleteDatabase(DATABASE_NAME);
+    IndexedDB.deleteDatabase(DATABASE.NAME);
 }
