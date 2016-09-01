@@ -1,7 +1,7 @@
 /* global statusHelper, logHelper, IndexedDB, cities, Event */
 
-var DATABASE = {NAME: 'postalCodes', VERSION: 63};
-var LOCATIONS = {STORENAME: 'locations', VERSION: 4};
+var DATABASE = {NAME: 'postalCodes', VERSION: 64};
+var LOCATIONS = {STORENAME: 'locations', VERSION: 5};
 
 function withPostalCodeDatabase(onSuccess) {
     'use strict';
@@ -61,7 +61,7 @@ function insertZipcodes(zipcodeStore) {
             var lines = chunk.split('\n');
             numberOfLines += lines.length;
             storeZipcodes(lines);
-            status.display('Initializing zipcode database: loaded ' + numberOfLines + ' records.');
+            statusLine.display('Initializing zipcode database: loaded ' + numberOfLines + ' records.');
         }
 
         if (event.type === 'load') {

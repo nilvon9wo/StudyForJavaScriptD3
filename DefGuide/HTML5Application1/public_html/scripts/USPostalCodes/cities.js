@@ -4,10 +4,9 @@ var cities = {
     lookup: function (zipcode, callback) {
         'use strict';
         withPostalCodeDatabase(function (database, event) {
-            console.log('database', database);
             IndexedDB.readRecordByKey({
                 database: database,
-                store: 'locations',
+                store: LOCATIONS.STORENAME,
                 key: zipcode,
                 events: {
                     success: function (event) {
