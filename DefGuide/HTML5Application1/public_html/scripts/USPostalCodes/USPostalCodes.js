@@ -1,7 +1,7 @@
 /* global statusHelper, logHelper, IndexedDB, cities, Event */
 
-var DATABASE = {NAME: 'postalCodes', VERSION: 64};
-var LOCATIONS = {STORENAME: 'locations', VERSION: 5};
+var DATABASE = {NAME: 'postalCodes', VERSION: 65};
+var LOCATIONS = {STORENAME: 'locations', VERSION: 7};
 
 function withPostalCodeDatabase(onSuccess) {
     'use strict';
@@ -32,7 +32,7 @@ function withPostalCodeDatabase(onSuccess) {
             success: function(event) {
                 var database = event.target.result;
                 onSuccess(database, event);
-            },
+            }
         }
     });
 }

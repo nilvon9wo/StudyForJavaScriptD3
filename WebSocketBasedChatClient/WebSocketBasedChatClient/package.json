@@ -1,0 +1,9 @@
+{
+    "name": "WebSocketBasedChatClient",
+    "version": "1.0.0",
+    "description": "My first socket.io app",
+    "keywords": ["util", "functional", "server", "client", "browser"],
+    "author": "Brian Kessler",
+    "contributors": [],
+    "dependencies": {}
+}
