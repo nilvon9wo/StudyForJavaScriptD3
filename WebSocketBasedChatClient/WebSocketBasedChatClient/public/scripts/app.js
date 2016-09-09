@@ -5,22 +5,11 @@ MediusEvent.whenReady(function () {
     var nickname = prompt('Enter your nickname');
     var getElementById = document.getElementById.bind(document);
 
-    var socket = createSocket();
-    addSubmissionHandler(socket);
-    addMessageListener(socket);
-    addCloseHandler(socket);
-
-    function createSocket() {
-        //var socket = new WebSocket('ws://echo.websocket.org');
-        var socket = new WebSocket('ws://' + location.host:8000 + '/');
-        MediusEvent.add(socket, 'open', function (event) {
-            updatedStatus({
-                innerHTML: 'Connected to: ' + event.currentTarget.url,
-                className: 'open'
-            });
-        });
-        return socket;
-    }
+    var socket = io('ws://localhost:3000', { path: '/myapp/socket.io'});
+    console.log('$$$ socket', socket);
+    //addSubmissionHandler(socket);
+    //addMessageListener(socket);
+    //addCloseHandler(socket);
 
     function updatedStatus(config) {
         var socketStatus = getElementById('status');
