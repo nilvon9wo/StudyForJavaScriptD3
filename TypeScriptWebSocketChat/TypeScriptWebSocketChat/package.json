@@ -1,0 +1,17 @@
+{
+  "name": "TypeScriptWebSocketChat",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "Brian Kessler",
+  "contributors": [],
+  "dependencies": {
+    "typescript": "^1.8.10",
+    "ws": "^1.1.1"
+  }
+}
