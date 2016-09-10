@@ -12,6 +12,6 @@
   "author": "Brian Kessler",
   "contributors": [],
   "dependencies": {
-    "socket.io": "^1.4.8"
+    "ws": "^1.1.1"
   }
 }
