@@ -39,17 +39,17 @@ app.get('/', function (request, response) {
     }
 });
 
-webSocketServer.on('connection', function (socket) {
-    socket.emit('announcements', {message: 'A new user has joined!'});
-    console.info('a user connected with id %s', socket.id);
+webSocketServer.on('connection', function (webSocket) {
+    webSocket.emit('announcements', {message: 'A new user has joined!'});
+    console.info('a user connected with user-agent %s', webSocket.upgradeReq.headers['user-agent']);
 
-    socket.on('disconnect', function () {
+    webSocket.on('disconnect', function () {
         console.info('user disconnected');
     });
 
-    socket.on('message', function (message) {
+    webSocket.on('message', function (message) {
         try {
-            broadcast(JSON.stringify(message));
+            broadcast(message);
         } catch (exception) {
             console.error(exception.message);
         }

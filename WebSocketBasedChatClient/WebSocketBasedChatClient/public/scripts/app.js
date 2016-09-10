@@ -35,9 +35,12 @@ MediusEvent.whenReady(function () {
             event.preventDefault();
 
             var messageField = getElementById('message');
-            var message = nickname + ': ' + messageField.value;
-            socket.send(message);
-            displayMessage(['Sent: ', message]);
+            var message = {
+                nickname: nickname,
+                message: messageField.value
+            };
+            socket.send(JSON.stringify(message));
+            displayMessage([ nickname + ': ', message.message]);
 
             messageField.value = '';
             return false;
@@ -60,7 +63,10 @@ MediusEvent.whenReady(function () {
         var messageList = getElementById('messages');
         MediusEvent.add(socket, 'message', function (event) {
             var message = event.data;
-            displayMessage(['Received: ', message]);
+            message = JSON.parse(message);
+            if (message.nickname !== nickname) {
+                displayMessage([ message.nickname + ': ', message.message]);
+            }
         });
     }
 
